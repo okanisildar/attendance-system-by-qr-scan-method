@@ -1,0 +1,82 @@
+{
+  "name": "is-installed-globally",
+  "version": "0.1.0",
+  "description": "Check if your package was installed globally",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/sindresorhus/is-installed-globally.git"
+  },
+  "author": {
+    "name": "Sindre Sorhus",
+    "email": "sindresorhus@gmail.com",
+    "url": "sindresorhus.com"
+  },
+  "engines": {
+    "node": ">=4"
+  },
+  "scripts": {
+    "test": "xo && ava"
+  },
+  "files": [
+    "index.js"
+  ],
+  "keywords": [
+    "global",
+    "package",
+    "globally",
+    "module",
+    "install",
+    "installed",
+    "npm",
+    "yarn",
+    "is",
+    "check",
+    "detect",
+    "local",
+    "locally",
+    "cli",
+    "bin",
+    "binary"
+  ],
+  "dependencies": {
+    "global-dirs": "^0.1.0",
+    "is-path-inside": "^1.0.0"
+  },
+  "devDependencies": {
+    "ava": "*",
+    "execa": "^0.7.0",
+    "xo": "*"
+  },
+  "gitHead": "c8de3eb10412caceb8f005a4ad2b2e91b09caedb",
+  "bugs": {
+    "url": "https://github.com/sindresorhus/is-installed-globally/issues"
+  },
+  "homepage": "https://github.com/sindresorhus/is-installed-globally#readme",
+  "_id": "is-installed-globally@0.1.0",
+  "_shasum": "0dfd98f5a9111716dd535dda6492f67bf3d25a80",
+  "_from": "is-installed-globally@>=0.1.0 <0.2.0",
+  "_npmVersion": "4.6.1",
+  "_nodeVersion": "8.0.0",
+  "_npmUser": {
+    "name": "sindresorhus",
+    "email": "sindresorhus@gmail.com"
+  },
+  "dist": {
+    "shasum": "0dfd98f5a9111716dd535dda6492f67bf3d25a80",
+    "tarball": "https://registry.npmjs.org/is-installed-globally/-/is-installed-globally-0.1.0.tgz"
+  },
+  "maintainers": [
+    {
+      "name": "sindresorhus",
+      "email": "sindresorhus@gmail.com"
+    }
+  ],
+  "_npmOperationalInternal": {
+    "host": "s3://npm-registry-packages",
+    "tmp": "tmp/is-installed-globally-0.1.0.tgz_1498431002972_0.9673243085853755"
+  },
+  "directories": {},
+  "_resolved": "https://registry.npmjs.org/is-installed-globally/-/is-installed-globally-0.1.0.tgz",
+  "readme": "ERROR: No README data found!"
+}

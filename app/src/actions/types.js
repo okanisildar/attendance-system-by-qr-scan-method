@@ -1,0 +1,1 @@
+export const ON_CHANGE_TEXT = 'on_change_text';

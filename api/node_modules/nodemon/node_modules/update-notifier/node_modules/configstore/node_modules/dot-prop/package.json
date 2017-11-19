@@ -1,0 +1,83 @@
+{
+  "name": "dot-prop",
+  "version": "4.2.0",
+  "description": "Get, set, or delete a property from a nested object using a dot path",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/sindresorhus/dot-prop.git"
+  },
+  "author": {
+    "name": "Sindre Sorhus",
+    "email": "sindresorhus@gmail.com",
+    "url": "sindresorhus.com"
+  },
+  "engines": {
+    "node": ">=4"
+  },
+  "scripts": {
+    "test": "xo && ava",
+    "bench": "matcha bench.js"
+  },
+  "files": [
+    "index.js"
+  ],
+  "keywords": [
+    "obj",
+    "object",
+    "prop",
+    "property",
+    "dot",
+    "path",
+    "get",
+    "set",
+    "delete",
+    "del",
+    "access",
+    "notation",
+    "dotty"
+  ],
+  "dependencies": {
+    "is-obj": "^1.0.0"
+  },
+  "devDependencies": {
+    "ava": "*",
+    "matcha": "^0.7.0",
+    "xo": "*"
+  },
+  "xo": {
+    "esnext": true
+  },
+  "gitHead": "70f7ed8e5dfe72c726bebe9cef5c85c1fb3cd767",
+  "bugs": {
+    "url": "https://github.com/sindresorhus/dot-prop/issues"
+  },
+  "homepage": "https://github.com/sindresorhus/dot-prop#readme",
+  "_id": "dot-prop@4.2.0",
+  "_npmVersion": "5.3.0",
+  "_nodeVersion": "8.2.1",
+  "_npmUser": {
+    "name": "sindresorhus",
+    "email": "sindresorhus@gmail.com"
+  },
+  "dist": {
+    "integrity": "sha512-tUMXrxlExSW6U2EXiiKGSBVdYgtV8qlHL+C10TsW4PURY/ic+eaysnSkwB4kA/mBlCyy/IKDJ+Lc3wbWeaXtuQ==",
+    "shasum": "1f19e0c2e1aa0e32797c49799f2837ac6af69c57",
+    "tarball": "https://registry.npmjs.org/dot-prop/-/dot-prop-4.2.0.tgz"
+  },
+  "maintainers": [
+    {
+      "name": "sindresorhus",
+      "email": "sindresorhus@gmail.com"
+    }
+  ],
+  "_npmOperationalInternal": {
+    "host": "s3://npm-registry-packages",
+    "tmp": "tmp/dot-prop-4.2.0.tgz_1500926929238_0.7274610283784568"
+  },
+  "directories": {},
+  "_shasum": "1f19e0c2e1aa0e32797c49799f2837ac6af69c57",
+  "_resolved": "https://registry.npmjs.org/dot-prop/-/dot-prop-4.2.0.tgz",
+  "_from": "dot-prop@>=4.1.0 <5.0.0",
+  "readme": "ERROR: No README data found!"
+}

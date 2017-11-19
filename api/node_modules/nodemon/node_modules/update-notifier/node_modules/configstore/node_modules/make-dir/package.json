@@ -1,0 +1,89 @@
+{
+  "name": "make-dir",
+  "version": "1.1.0",
+  "description": "Make a directory and its parents if needed - Think `mkdir -p`",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/sindresorhus/make-dir.git"
+  },
+  "author": {
+    "name": "Sindre Sorhus",
+    "email": "sindresorhus@gmail.com",
+    "url": "sindresorhus.com"
+  },
+  "engines": {
+    "node": ">=4"
+  },
+  "scripts": {
+    "test": "xo && nyc ava"
+  },
+  "files": [
+    "index.js"
+  ],
+  "keywords": [
+    "mkdir",
+    "mkdirp",
+    "make",
+    "directories",
+    "dir",
+    "dirs",
+    "folders",
+    "directory",
+    "folder",
+    "path",
+    "parent",
+    "parents",
+    "intermediate",
+    "recursively",
+    "recursive",
+    "create",
+    "fs",
+    "filesystem",
+    "file-system"
+  ],
+  "dependencies": {
+    "pify": "^3.0.0"
+  },
+  "devDependencies": {
+    "ava": "*",
+    "codecov": "^2.1.0",
+    "graceful-fs": "^4.1.11",
+    "nyc": "^10.2.0",
+    "path-type": "^3.0.0",
+    "tempy": "^0.2.1",
+    "xo": "*"
+  },
+  "gitHead": "de4a32fd806f4da0b880a8f2b3962d0ac34d7244",
+  "bugs": {
+    "url": "https://github.com/sindresorhus/make-dir/issues"
+  },
+  "homepage": "https://github.com/sindresorhus/make-dir#readme",
+  "_id": "make-dir@1.1.0",
+  "_npmVersion": "5.4.2",
+  "_nodeVersion": "8.7.0",
+  "_npmUser": {
+    "name": "sindresorhus",
+    "email": "sindresorhus@gmail.com"
+  },
+  "dist": {
+    "integrity": "sha512-0Pkui4wLJ7rxvmfUvs87skoEaxmu0hCUApF8nonzpl7q//FWp9zu8W61Scz4sd/kUiqDxvUhtoam2efDyiBzcA==",
+    "shasum": "19b4369fe48c116f53c2af95ad102c0e39e85d51",
+    "tarball": "https://registry.npmjs.org/make-dir/-/make-dir-1.1.0.tgz"
+  },
+  "maintainers": [
+    {
+      "name": "sindresorhus",
+      "email": "sindresorhus@gmail.com"
+    }
+  ],
+  "_npmOperationalInternal": {
+    "host": "s3://npm-registry-packages",
+    "tmp": "tmp/make-dir-1.1.0.tgz_1508653268298_0.4698842391371727"
+  },
+  "directories": {},
+  "_shasum": "19b4369fe48c116f53c2af95ad102c0e39e85d51",
+  "_resolved": "https://registry.npmjs.org/make-dir/-/make-dir-1.1.0.tgz",
+  "_from": "make-dir@>=1.0.0 <2.0.0",
+  "readme": "ERROR: No README data found!"
+}

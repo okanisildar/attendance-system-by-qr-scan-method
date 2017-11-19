@@ -1,0 +1,78 @@
+{
+  "name": "import-lazy",
+  "version": "2.1.0",
+  "description": "Import modules lazily",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/sindresorhus/import-lazy.git"
+  },
+  "author": {
+    "name": "Sindre Sorhus",
+    "email": "sindresorhus@gmail.com",
+    "url": "sindresorhus.com"
+  },
+  "contributors": [
+    {
+      "name": "Jorge Bucaran",
+      "email": "jbucaran@me.com"
+    }
+  ],
+  "engines": {
+    "node": ">=4"
+  },
+  "scripts": {
+    "test": "xo && ava"
+  },
+  "files": [
+    "index.js"
+  ],
+  "keywords": [
+    "import",
+    "require",
+    "load",
+    "module",
+    "modules",
+    "lazy",
+    "lazily",
+    "defer",
+    "deferred",
+    "proxy",
+    "proxies"
+  ],
+  "devDependencies": {
+    "ava": "*",
+    "xo": "*"
+  },
+  "gitHead": "ed6c2fac31aaf8a7d91a27295756383487f3965d",
+  "bugs": {
+    "url": "https://github.com/sindresorhus/import-lazy/issues"
+  },
+  "homepage": "https://github.com/sindresorhus/import-lazy#readme",
+  "_id": "import-lazy@2.1.0",
+  "_shasum": "05698e3d45c88e8d7e9d92cb0584e77f096f3e43",
+  "_from": "import-lazy@>=2.1.0 <3.0.0",
+  "_npmVersion": "2.15.11",
+  "_nodeVersion": "4.8.3",
+  "_npmUser": {
+    "name": "sindresorhus",
+    "email": "sindresorhus@gmail.com"
+  },
+  "dist": {
+    "shasum": "05698e3d45c88e8d7e9d92cb0584e77f096f3e43",
+    "tarball": "https://registry.npmjs.org/import-lazy/-/import-lazy-2.1.0.tgz"
+  },
+  "maintainers": [
+    {
+      "name": "sindresorhus",
+      "email": "sindresorhus@gmail.com"
+    }
+  ],
+  "_npmOperationalInternal": {
+    "host": "s3://npm-registry-packages",
+    "tmp": "tmp/import-lazy-2.1.0.tgz_1495360148006_0.7086837058886886"
+  },
+  "directories": {},
+  "_resolved": "https://registry.npmjs.org/import-lazy/-/import-lazy-2.1.0.tgz",
+  "readme": "ERROR: No README data found!"
+}
