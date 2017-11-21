@@ -2,7 +2,7 @@ import React from 'react';
 import { View } from 'react-native';
 
 const MainContainer = (props) => (
-		<View style={styles.containerStyle}>
+		<View style={[styles.containerStyle, props.style]}>
 			{props.children}
 		</View>
 );
