@@ -24,7 +24,7 @@ app.use(passport.session());
 
 //routes
 app.get('/', (req, res) => res.send("Hello"));
-app.post('/register' , users);
+app.post('/users' , users);
 app.use('/teachers' , teachers);
 app.use('/students', students);
 
