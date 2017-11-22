@@ -8,9 +8,9 @@ import FieldContainer from './common/FieldContainer';
 import ItemContainer from './common/ItemContainer';
 import Button from './common/Button';
 
-class LoginForm extends Component {
+class RegisterForm extends Component {
 	static navigationOptions = {
-		title: 'Please Login'
+		title: 'Register'
 	};
 
 	onChangeTextHandler(value) {
@@ -18,10 +18,10 @@ class LoginForm extends Component {
 	}
 
 	onButtonPress() {
-		const { email, password } = this.props;
+		const { email, password, name, surname } = this.props;
 		const { navigate } = this.props.navigation;
 		//navigate('mainMenu')
-		console.log(email, password);
+		console.log(email, password, name, surname);
 	}
 
   render() {
@@ -34,6 +34,20 @@ class LoginForm extends Component {
 								placeholder="Email" 
 								onChangeText={(value) => this.onChangeTextHandler({ prop: 'email', value })}
 								label='Email'
+							/>
+						</FieldContainer>
+						<FieldContainer>
+							<Input
+								placeholder="Name" 
+								onChangeText={(value) => this.onChangeTextHandler({ prop: 'name', value })}
+								label='Name'
+							/>
+						</FieldContainer>
+						<FieldContainer>
+							<Input
+								placeholder="Surname" 
+								onChangeText={(value) => this.onChangeTextHandler({ prop: 'surname', value })}
+								label='Surname'
 							/>
 						</FieldContainer>
 						<FieldContainer>
@@ -57,9 +71,11 @@ class LoginForm extends Component {
 const mapStateToProps = state => {
 	return {
 		email: state.auth.email,
-		password: state.auth.password
+		password: state.auth.password,
+		name: state.auth.name,
+		surname: state.auth.name
 	};
 };
 
 
-export default connect(mapStateToProps, { onChangeTextHandler })(LoginForm);
+export default connect(mapStateToProps, { onChangeTextHandler })(RegisterForm);

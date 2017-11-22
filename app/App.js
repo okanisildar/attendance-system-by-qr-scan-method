@@ -1,9 +1,14 @@
 import React from 'react';
 import { Provider } from 'react-redux';
 import { createStore } from 'redux';
+import { TabNavigator, StackNavigator } from 'react-navigation';
 import reducers from './src/reducers';
 import LoginForm from './src/components/LoginForm';
-import { fetchTeachers } from './constant/api';
+import RegisterForm from './src/components/RegisterForm';
+import MainMenu from './src/components/MainMenu';
+import AuthScreen from './src/screens/AuthScreen';
+import MainMenuScreen from './src/screens/MainMenuScreen';
+import NewAttendanceScreen from './src/screens/NewAttendanceScreen';
 
 export default class App extends React.Component {
 
@@ -12,12 +17,20 @@ export default class App extends React.Component {
       .then(resultJson => console.log(resultJson)));
   }
 
+
+
   render() {
     const store = createStore(reducers);
 
+    const MainNavigator = StackNavigator({
+      auth: { screen: RegisterForm },
+      mainMenu: { screen: MainMenuScreen },
+      newAttendance: { screen: NewAttendanceScreen }
+    });
+
     return (
       <Provider store={store}>
-        <LoginForm />
+        <MainNavigator />
       </Provider>
     );
   }

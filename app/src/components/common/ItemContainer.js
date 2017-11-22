@@ -12,10 +12,7 @@ const styles = {
 		borderWidth: 1,
 		borderRadius: 2,
 		borderColor: '#ddd',
-		borderBottomWidth: 0,
-		elevation: 1,
-		marginLeft: 5,
-		marginRight: 5
+		borderBottomWidth: 0
 	}
 };
 export default ItemContainer;
