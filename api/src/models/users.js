@@ -7,14 +7,14 @@ const userSchema = new mongoose.Schema({
 		password: String
 });
 
-//generates hash
-userSchema.methods.generateHash = (password) => {
-	return bcrypt.hashSync(password, bcrypt.genSaltSync(8), null);
-};
+userSchema.methods.comparePassword = function(candidatePassword, cb) {
+  bcrypt.compare(candidatePassword, this.password, (err, isMatch) => {
+  	console.log(err)
+    if (err) {
+      return cb(err)
+    }
 
-//checking if password is valid
-userSchema.methods.validPassword = (password) => {
-	return bcrypt.compareSync(password, this.local.password);
-};
-
+    cb(null, isMatch)
+  })
+}
 module.exports = mongoose.model('User', userSchema);

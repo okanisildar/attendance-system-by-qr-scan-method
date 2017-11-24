@@ -1,7 +1,7 @@
 const UserModel = require('../models/users');
 const jwt = require('jsonwebtoken');
 
-const generateToken = user => jwt.sign(user, 'secret' , { expiresIn: '1y' })
+const generateToken = user => jwt.sign(user, 'secretkey' , { expiresIn: '1y' })
 
 function registerUser (req, res, next) {
   const body = req.body;
@@ -55,7 +55,7 @@ function logInUser (req, res, next) {
   const email = req.body.email
   const password = req.body.password
 
-  User.findOne({ email: email }, (error, user) => {
+  UserModel.findOne({ email: email }, (error, user) => {
     if (error) {
       return next({
         status: 500,
@@ -70,6 +70,7 @@ function logInUser (req, res, next) {
         message: 'No User Found',
       })
     }
+    console.log(user)
 
     user.comparePassword(password, (error, isMatch) => {
       if (error) {

@@ -15,7 +15,6 @@ app.use(bodyParser.json())
 
 
 mongo.init();
-require('./config/passport')(passport);
 
 //passport
 app.use(session({ secret: 'secretkey' }));
@@ -24,7 +23,7 @@ app.use(passport.session());
 
 //routes
 app.get('/', (req, res) => res.send("Hello"));
-app.post('/users' , users);
+app.use('/users' , users);
 app.use('/teachers' , teachers);
 app.use('/students', students);
 
