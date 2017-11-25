@@ -9,6 +9,7 @@ const Input = (props) => {
 		<View style={containerStyle}>
 			<Text style={labelStyle}>{label}</Text>
 			<TextInput
+				keyboardType={props.keyboardType}
 				autoCorrect={false}
 				placeholder={props.placeholder} 
 				secureTextEntry={secureTextEntry}
@@ -41,7 +42,7 @@ const styles = {
 	labelStyle: {
 		fontSize: 16,
 		paddingLeft: 20,
-		flex: 1
+		flex: 1.5
 	}
 };
 export { Input };
