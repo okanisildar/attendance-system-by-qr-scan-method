@@ -19,4 +19,4 @@ const styles = {
 		marginBottom: 5
 	}
 };
-export default MainContainer;
+export { MainContainer };

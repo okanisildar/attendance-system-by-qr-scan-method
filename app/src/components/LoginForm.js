@@ -2,11 +2,8 @@ import React, { Component } from 'react';
 import { View } from 'react-native';
 import { connect } from 'react-redux';
 import { onChangeTextHandler } from '../actions';
-import MainContainer from './common/MainContainer';
-import Input from './common/Input';
-import FieldContainer from './common/FieldContainer';
-import ItemContainer from './common/ItemContainer';
-import Button from './common/Button';
+import { MainContainer, Input, FieldContainer, ItemContainer, Button } from './common';
+
 
 class LoginForm extends Component {
 	static navigationOptions = {

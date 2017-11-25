@@ -15,4 +15,4 @@ const styles = {
 		borderBottomWidth: 0
 	}
 };
-export default ItemContainer;
+export { ItemContainer };

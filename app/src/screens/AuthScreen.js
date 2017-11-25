@@ -1,12 +1,11 @@
 import React, { Component } from 'react';
 import { View, Text } from 'react-native';
+import RegisterForm from '../components/RegisterForm';
 
 class AuthScreen extends Component {
 	render() {
 		return (
-			<View>
-				<Text>AuthScreen</Text>
-			</View>
+			<RegisterForm navigation={this.props.navigation} />
 		);
 	}
 }

@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
-import { View, Text } from 'react-native';
-import Button from '../components/common/Button';
+import { View } from 'react-native';
+import MainMenu from '../components/MainMenu';
 
 class MainMenuScreen extends Component {
 	static navigationOptions = {
@@ -8,12 +8,8 @@ class MainMenuScreen extends Component {
 	};
 
 	render() {
-		const { navigate } = this.props.navigation;
 		return (
-			<View>
-				<Text>MainMenuScreen</Text>
-				<Button onPress={() => navigate('auth')}>Click</Button>
-			</View>
+			<MainMenu navigation={this.props.navigation}/>
 		);
 	}
 }

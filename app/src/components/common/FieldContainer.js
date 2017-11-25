@@ -17,4 +17,4 @@ const styles = {
 		position: 'relative'
 	}
 };
-export default FieldContainer;
+export { FieldContainer };

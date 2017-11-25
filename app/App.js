@@ -1,7 +1,7 @@
 import React from 'react';
 import { Provider } from 'react-redux';
 import { createStore } from 'redux';
-import { TabNavigator, StackNavigator } from 'react-navigation';
+import { StackNavigator } from 'react-navigation';
 import reducers from './src/reducers';
 import LoginForm from './src/components/LoginForm';
 import RegisterForm from './src/components/RegisterForm';
@@ -17,13 +17,11 @@ export default class App extends React.Component {
       .then(resultJson => console.log(resultJson)));
   }
 
-
-
   render() {
     const store = createStore(reducers);
 
     const MainNavigator = StackNavigator({
-      auth: { screen: RegisterForm },
+      auth: { screen: AuthScreen },
       mainMenu: { screen: MainMenuScreen },
       newAttendance: { screen: NewAttendanceScreen }
     });
