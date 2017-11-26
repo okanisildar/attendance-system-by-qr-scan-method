@@ -6,9 +6,10 @@ import reducers from './src/reducers';
 import LoginForm from './src/components/LoginForm';
 import RegisterForm from './src/components/RegisterForm';
 import MainMenu from './src/components/MainMenu';
-import AuthScreen from './src/screens/AuthScreen';
+import RegisterScreen from './src/screens/RegisterScreen';
 import MainMenuScreen from './src/screens/MainMenuScreen';
 import NewAttendanceScreen from './src/screens/NewAttendanceScreen';
+import WelcomeScreen from './src/screens/WelcomeScreen';
 
 export default class App extends React.Component {
 
@@ -21,7 +22,9 @@ export default class App extends React.Component {
     const store = createStore(reducers);
 
     const MainNavigator = StackNavigator({
-      auth: { screen: AuthScreen },
+      welcome: { screen: WelcomeScreen },
+      register: { screen: RegisterScreen },
+      login: { screen: LoginForm },
       mainMenu: { screen: MainMenuScreen },
       newAttendance: { screen: NewAttendanceScreen }
     });

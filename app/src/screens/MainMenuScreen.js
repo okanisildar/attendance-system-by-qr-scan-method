@@ -9,7 +9,7 @@ class MainMenuScreen extends Component {
 
 	render() {
 		return (
-			<MainMenu navigation={this.props.navigation}/>
+			<MainMenu navigation={this.props.navigation} />
 		);
 	}
 }

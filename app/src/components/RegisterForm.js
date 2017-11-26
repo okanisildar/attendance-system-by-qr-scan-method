@@ -14,10 +14,7 @@ class RegisterForm extends Component {
 	}
 
 	onButtonPress() {
-		const { email, password, name, surname } = this.props;
-		const { navigate } = this.props.navigation;
-		navigate('mainMenu')
-		console.log(email, password, name, surname);
+		
 	}
 
   render() {
