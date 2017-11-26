@@ -14,7 +14,22 @@ class RegisterForm extends Component {
 	}
 
 	onButtonPress() {
-		
+		//Not working
+		fetch('http://10.127.59.189:3000/users/register', {
+			method: 'POST',
+			headers: {
+				'Accept': 'application/json',
+				'Content-Type': 'application/json'
+			},
+			body: JSON.stringify({
+				email: this.props.email,
+				name: this.props.name,
+				surname: this.props.surname,
+				password: this.props.password
+			})
+		})
+		.then(result => result.json()
+      .then(resultJson => console.log(resultJson)));
 	}
 
   render() {

@@ -101,4 +101,13 @@ function logInUser (req, res, next) {
   })
 }
 
-module.exports = { registerUser, logInUser };
+function list (req, res) {
+  UserModel.find((error, users) => {
+    if(error) {
+      return res.status(500).json("Hata")
+    }
+    res.json({ users })
+  });
+}
+
+module.exports = { registerUser, logInUser, list };
