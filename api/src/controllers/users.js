@@ -6,8 +6,9 @@ const generateToken = user => jwt.sign(user, 'secretkey' , { expiresIn: '1y' })
 function registerUser (req, res, next) {
   const body = req.body;
   const email = body.email;
+  const name = body.name;
+  const surname = body.surname;
   const password = body.password;
-  const username = body.username;
 
   UserModel.findOne({ email : email }, (error, user) => {
     if (error) {
@@ -26,7 +27,8 @@ function registerUser (req, res, next) {
 
     user = new UserModel({
       email,
-      username,
+      name,
+      surname,
       password,
     })
 
