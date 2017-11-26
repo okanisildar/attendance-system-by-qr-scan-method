@@ -1,22 +1,29 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import { BarCodeScanner, Permissions } from 'expo';
 import { getAttendanceInfo } from '../actions';
 import { MainContainer, Input, FieldContainer, ItemContainer, Button } from './common';
 
 class NewAttendace extends Component {
+	state = {
+    hasCameraPermission: null
+  }
 
 	onChangeTextHandler(value) {
 		console.log(value);
 		this.props.getAttendanceInfo(value);
 	}
 
-	onPressButton() {
-		console.log(this.props)
-		let { className, date, hours } = this.props;
-		console.log(className, date, hours);
+	async	onPressButton() {
+		const { status } = await Permissions.askAsync(Permissions.CAMERA);
+		this.setState({ hasCameraPermission: status === 'granted' });
 	}
 
-	render() {
+	handleBarCodeRead(value) {
+		console.log(value);
+	}
+
+	renderForm() {
 		return (
 			<MainContainer>
 				<ItemContainer>
@@ -48,6 +55,32 @@ class NewAttendace extends Component {
 					</FieldContainer>
 				</ItemContainer>
 			</MainContainer>
+		);
+	}
+
+	renderCamera() {
+		return (
+			<MainContainer>
+        <BarCodeScanner
+          onBarCodeRead={(value) => this.handleBarCodeRead({ value })}
+          style={{ height: 200, width: 200 }}
+        />
+      </MainContainer>
+    );
+	}
+
+	renderLogic() {
+		const { hasCameraPermission } = this.state;
+		if (hasCameraPermission === null) {
+			return this.renderForm();
+		} else {
+			return this.renderCamera();
+		}
+	}
+
+	render() {
+		return (
+			this.renderLogic()
 		);
 	}
 }
