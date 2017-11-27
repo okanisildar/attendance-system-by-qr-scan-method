@@ -10,6 +10,7 @@ import RegisterScreen from './src/screens/RegisterScreen';
 import MainMenuScreen from './src/screens/MainMenuScreen';
 import NewAttendanceScreen from './src/screens/NewAttendanceScreen';
 import WelcomeScreen from './src/screens/WelcomeScreen';
+import ViewAttendanceScreen from './src/screens/ViewAttendanceScreen';
 
 export default class App extends React.Component {
 
@@ -26,7 +27,8 @@ export default class App extends React.Component {
       register: { screen: RegisterScreen },
       login: { screen: LoginForm },
       mainMenu: { screen: MainMenuScreen },
-      newAttendance: { screen: NewAttendanceScreen }
+      newAttendance: { screen: NewAttendanceScreen },
+      viewAttendance: { screen: ViewAttendanceScreen }
     });
 
     return (

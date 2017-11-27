@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import { Text } from 'react-native';
 import { MainContainer, FieldContainer, Button } from './common';
 
 class MainMenu extends Component {
@@ -12,7 +11,7 @@ class MainMenu extends Component {
 					<Button onPress={() => navigate('newAttendance')}>Create new attendance record</Button>
 				</FieldContainer>
 				<FieldContainer>
-					<Button onPress={() => navigate('auth')}>Check attendance results</Button>
+					<Button onPress={() => navigate('viewAttendance')}>View attendance results</Button>
 				</FieldContainer>
 			</MainContainer>
 		);
