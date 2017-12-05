@@ -10,8 +10,8 @@ const students = require('./routes/students');
 const users = require('./routes/users');
 const mongo = require('./config/mongo');
 
-app.use(cors())
-app.use(bodyParser.json())
+app.use(cors());
+app.use(bodyParser.json());
 
 
 mongo.init();

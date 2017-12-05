@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { View } from 'react-native';
 import { connect } from 'react-redux';
-import { onChangeTextHandler } from '../actions';
+import { onChangeTextHandler, signUp } from '../actions';
 import { MainContainer, Input, FieldContainer, ItemContainer, Button } from './common';
 
 class RegisterForm extends Component {
@@ -15,8 +15,11 @@ class RegisterForm extends Component {
 
 	onButtonPress() {
 		//Not working
+		const { email, password, name, surname } = this.props;
 		const { navigate } = this.props.navigation;
-		navigate('mainMenu');
+		console.log(this.props);
+		this.props.signUp({ email, password, name, surname });
+		//navigate('mainMenu');
 	}
 
   render() {
@@ -63,14 +66,11 @@ class RegisterForm extends Component {
   }
 }
 
-const mapStateToProps = state => {
-	return {
-		email: state.auth.email,
-		password: state.auth.password,
-		name: state.auth.name,
-		surname: state.auth.name
-	};
+const mapStateToProps = (state) => {
+	const { email, password, name, surname } = state.auth;
+
+	return { email, password, name, surname };
 };
 
 
-export default connect(mapStateToProps, { onChangeTextHandler })(RegisterForm);
+export default connect(mapStateToProps, { onChangeTextHandler, signUp })(RegisterForm);

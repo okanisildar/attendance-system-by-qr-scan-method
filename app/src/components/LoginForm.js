@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { View } from 'react-native';
 import { connect } from 'react-redux';
-import { onChangeTextHandler } from '../actions';
+import { onChangeTextHandler, login } from '../actions';
 import { MainContainer, Input, FieldContainer, ItemContainer, Button } from './common';
 
 
@@ -18,7 +18,7 @@ class LoginForm extends Component {
 		const { email, password } = this.props;
 		const { navigate } = this.props.navigation;
 		//navigate('mainMenu')
-		console.log(email, password);
+		this.props.login({ email, password });
 	}
 
   render() {
@@ -59,4 +59,4 @@ const mapStateToProps = state => {
 };
 
 
-export default connect(mapStateToProps, { onChangeTextHandler })(LoginForm);
+export default connect(mapStateToProps, { onChangeTextHandler, login })(LoginForm);

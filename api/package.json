@@ -16,9 +16,11 @@
     "express": "^4.16.2",
     "express-session": "^1.15.6",
     "jsonwebtoken": "^8.1.0",
+    "lodash": "^4.17.4",
     "mongoose": "^4.13.4",
     "passport": "^0.4.0",
-    "passport-local": "^1.0.0"
+    "passport-local": "^1.0.0",
+    "validator": "^9.1.2"
   },
   "devDependencies": {
     "nodemon": "^1.12.1"
