@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { View } from 'react-native';
+import { View, Text } from 'react-native';
 import { connect } from 'react-redux';
 import { onChangeTextHandler, login } from '../actions';
 import { MainContainer, Input, FieldContainer, ItemContainer, Button } from './common';
@@ -10,6 +10,10 @@ class LoginForm extends Component {
 		title: 'Please Login'
 	};
 
+	state = {
+		isEmpty: true
+	}
+
 	onChangeTextHandler(value) {
 		this.props.onChangeTextHandler(value);
 	}
@@ -18,7 +22,7 @@ class LoginForm extends Component {
 		const { email, password } = this.props;
 		const { navigate } = this.props.navigation;
 		//navigate('mainMenu')
-		this.props.login({ email, password });
+		this.props.login({ email, password, navigate });
 	}
 
   render() {
@@ -42,6 +46,11 @@ class LoginForm extends Component {
 							/>
 						</FieldContainer>
 						<FieldContainer>
+							<Text style={styles.errorTextStyle}>
+								{this.props.error}
+							</Text>
+						</FieldContainer>
+						<FieldContainer>
 							<Button onPress={this.onButtonPress.bind(this)}>Login</Button>
 						</FieldContainer>
 					</ItemContainer>
@@ -51,10 +60,20 @@ class LoginForm extends Component {
   }
 }
 
+const styles = {
+	errorTextStyle: {
+		fontSize: 20,
+		alignSelf: 'center',
+		color: 'red'
+	}
+};
+
 const mapStateToProps = state => {
 	return {
 		email: state.auth.email,
-		password: state.auth.password
+		password: state.auth.password,
+		error: state.auth.error,
+		loading: state.auth.loading
 	};
 };
 

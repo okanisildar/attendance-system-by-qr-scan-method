@@ -3,8 +3,8 @@ import { MainContainer, FieldContainer, Button } from './common';
 
 class MainMenu extends Component {
 	render() {
-		const { navigate } = this.props.navigation;
-
+		const { navigate, state } = this.props.navigation;
+		console.log(state.params);
 		return (
 			<MainContainer>
 				<FieldContainer>

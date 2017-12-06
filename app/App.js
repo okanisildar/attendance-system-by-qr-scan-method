@@ -17,7 +17,7 @@ import ViewAttendanceScreen from './src/screens/ViewAttendanceScreen';
 export default class App extends React.Component {
 
   componentDidMount() {
-    axios.get('http://192.168.1.4:3000/teachers')
+    axios.get('http://192.168.1.5:3000/teachers')
     .then(result => console.log(result));
   }
 
