@@ -1,12 +1,12 @@
 import React, { Component } from 'react';
-import { View } from 'react-native';
+import { View, Text } from 'react-native';
 import { connect } from 'react-redux';
 import { onChangeTextHandler, signUp } from '../actions';
 import { MainContainer, Input, FieldContainer, ItemContainer, Button } from './common';
 
 class RegisterForm extends Component {
 	static navigationOptions = {
-		title: 'Register'
+		title: 'Create Account'
 	};
 
 	onChangeTextHandler(value) {
@@ -17,8 +17,7 @@ class RegisterForm extends Component {
 		//Not working
 		const { email, password, name, surname } = this.props;
 		const { navigate } = this.props.navigation;
-		console.log(this.props);
-		this.props.signUp({ email, password, name, surname });
+		this.props.signUp({ email, password, name, surname, navigate });
 		//navigate('mainMenu');
 	}
 
@@ -57,6 +56,11 @@ class RegisterForm extends Component {
 							/>
 						</FieldContainer>
 						<FieldContainer>
+							<Text style={styles.errorTextStyle}>
+								{this.props.error}
+							</Text>
+						</FieldContainer>
+						<FieldContainer>
 							<Button onPress={this.onButtonPress.bind(this)}>Sign Up</Button>
 						</FieldContainer>
 					</ItemContainer>
@@ -66,10 +70,18 @@ class RegisterForm extends Component {
   }
 }
 
-const mapStateToProps = (state) => {
-	const { email, password, name, surname } = state.auth;
+const styles = {
+	errorTextStyle: {
+		fontSize: 20,
+		alignSelf: 'center',
+		color: 'red'
+	}
+};
 
-	return { email, password, name, surname };
+const mapStateToProps = (state) => {
+	const { email, password, name, surname, error, loading } = state.auth;
+
+	return { email, password, name, surname, error, loading };
 };
 
 
