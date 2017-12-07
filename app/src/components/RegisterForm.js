@@ -5,10 +5,6 @@ import { onChangeTextHandler, signUp } from '../actions';
 import { MainContainer, Input, FieldContainer, ItemContainer, Button } from './common';
 
 class RegisterForm extends Component {
-	static navigationOptions = {
-		title: 'Create Account'
-	};
-
 	onChangeTextHandler(value) {
 		this.props.onChangeTextHandler(value);
 	}

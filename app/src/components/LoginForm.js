@@ -10,10 +10,6 @@ class LoginForm extends Component {
 		title: 'Please Login'
 	};
 
-	state = {
-		isEmpty: true
-	}
-
 	onChangeTextHandler(value) {
 		this.props.onChangeTextHandler(value);
 	}

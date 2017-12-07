@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { Alert, Text, TouchableOpacity, StyleSheet } from 'react-native'
 import { connect } from 'react-redux';
 import { BarCodeScanner, Permissions } from 'expo';
 import { getAttendanceInfo } from '../actions';
@@ -6,7 +7,9 @@ import { MainContainer, Input, FieldContainer, ItemContainer, Button } from './c
 
 class NewAttendace extends Component {
 	state = {
-    hasCameraPermission: null
+    hasCameraPermission: null,
+    students: [],
+    showModal: false
   }
 
 	onChangeTextHandler(value) {
@@ -15,12 +18,15 @@ class NewAttendace extends Component {
 	}
 
 	async	onPressButton() {
+		const { className, date, hours } = this.props;
 		const { status } = await Permissions.askAsync(Permissions.CAMERA);
 		this.setState({ hasCameraPermission: status === 'granted' });
 	}
 
-	handleBarCodeRead(value) {
-		console.log(value);
+	async handleBarCodeRead(value) {
+		let { students } = this.state;
+		students.push(value);
+		this.setState({ showModal: true, students });
 	}
 
 	renderForm() {
@@ -63,9 +69,10 @@ class NewAttendace extends Component {
 			<MainContainer>
         <BarCodeScanner
           onBarCodeRead={(value) => this.handleBarCodeRead({ value })}
-          style={{ height: 200, width: 200 }}
+          style={{ flex: 1 }}
         />
       </MainContainer>
+     
     );
 	}
 
@@ -79,11 +86,21 @@ class NewAttendace extends Component {
 	}
 
 	render() {
+		console.log(this.state.students);
 		return (
 			this.renderLogic()
 		);
 	}
 }
+
+const styles = {
+	modalStyle: {
+		flex: 1,
+    flexDirection: 'column',
+    justifyContent: 'center',
+    alignItems: 'center'
+	}
+};
 
 const mapStateToProps = ({ newAttendance }) => {
 	return {

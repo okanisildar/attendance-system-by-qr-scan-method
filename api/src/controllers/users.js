@@ -78,12 +78,12 @@ function registerUser (req, res, next) {
         })
       }
 
-      const token = generateToken({
+      /*const token = generateToken({
         id: user.id
-      })
+      })*/
 
       return res.json({
-        token
+        user
       })
     })
   })
@@ -109,7 +109,6 @@ function logInUser (req, res, next) {
         message: 'No User Found',
       })
     }
-    console.log(user)
 
     user.comparePassword(password, (error, isMatch) => {
       if (error) {
