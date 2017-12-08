@@ -1,12 +1,22 @@
+import _ from 'lodash';
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { onChangeTextHandler } from '../actions';
 import { MainContainer, Input, FieldContainer, ItemContainer, Button } from './common';
 
 class UpdateTeacherInformation extends Component {
+	componentDidMount() {
+		let { user } = this.props.navigation.state.params.data;
+		_.each(user, (value, prop) => {
+				this.props.onChangeTextHandler({ prop, value });
+		});
+  }
+	onChangeTextHandler(value) {
+		this.props.onChangeTextHandler(value);
+	}
+
 	render() {
-		const { user } = this.props.navigation.state.params.data;
-		console.log(user)
+		const { name, surname } = this.props;
 		return (
 			<MainContainer>
 				<ItemContainer>
@@ -14,14 +24,16 @@ class UpdateTeacherInformation extends Component {
 						<Input 
 							placheholder="Name"
 							label="Name"
-							value={user.name}
+							value={name}
+							onChangeText={(value) => this.onChangeTextHandler({ prop: 'name', value })}
 						/>
 					</FieldContainer>
 					<FieldContainer>
 						<Input 
 							placheholder="Surname"
 							label="Surname"
-							value={user.surname}
+							value={surname}
+							onChangeText={(value) => this.onChangeTextHandler({ prop: 'surname', value })}
 						/>
 					</FieldContainer>
 					<FieldContainer>
