@@ -14,7 +14,8 @@ const Input = (props) => {
 				placeholder={props.placeholder} 
 				secureTextEntry={secureTextEntry}
 				onChangeText={onChangeText}
-				style={textStyle} 
+				style={textStyle}
+				value={props.value} 
 			/>
 		</View>
 	);

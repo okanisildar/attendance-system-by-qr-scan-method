@@ -78,12 +78,11 @@ function registerUser (req, res, next) {
         })
       }
 
-      /*const token = generateToken({
+      const token = generateToken({
         id: user.id
-      })*/
-
+      })
       return res.json({
-        user
+        token
       })
     })
   })
@@ -129,7 +128,7 @@ function logInUser (req, res, next) {
       /*const token = generateToken({
         id: user.id,
       })*/
-
+      console.log(user)
       return res.json({
         user
       })

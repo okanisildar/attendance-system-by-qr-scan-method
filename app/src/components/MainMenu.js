@@ -4,7 +4,7 @@ import { MainContainer, FieldContainer, Button } from './common';
 class MainMenu extends Component {
 	render() {
 		const { navigate, state } = this.props.navigation;
-		console.log(state.params);
+		console.log(state);
 		return (
 			<MainContainer>
 				<FieldContainer>
@@ -12,6 +12,11 @@ class MainMenu extends Component {
 				</FieldContainer>
 				<FieldContainer>
 					<Button onPress={() => navigate('viewAttendance')}>View attendance results</Button>
+				</FieldContainer>
+				<FieldContainer>
+					<Button onPress={() => navigate('updateTeacherInfo', { data: state.params.user })}>
+						Update Teacher Information
+					</Button>
 				</FieldContainer>
 			</MainContainer>
 		);

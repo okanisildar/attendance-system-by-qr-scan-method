@@ -15,7 +15,7 @@ export const onChangeTextHandler = ({ prop, value }) => {
 	};
 };
 
-export const signUp = ({ email, password, name, surname }) => {
+export const signUp = ({ email, password, name, surname, navigate }) => {
 	return dispatch => {
 		dispatch({ type: LOGIN_USER });
 		return axios.post('http://192.168.1.5:3000/users', { email, password, name, surname })

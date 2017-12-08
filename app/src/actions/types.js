@@ -5,3 +5,5 @@ export const LOGIN_USER_SUCCESS = 'login_user_success';
 export const LOGIN_USER_FAIL = 'login_user_fail';
 export const SIGNUP_SUCCESS = 'signup_success';
 export const SIGNUP_FAIL = 'signup_fail';
+export const UPDATE_SUCCESS = 'update_success';
+export const UPDATE_FAIL = 'update_fail';

@@ -13,6 +13,7 @@ import MainMenuScreen from './src/screens/MainMenuScreen';
 import NewAttendanceScreen from './src/screens/NewAttendanceScreen';
 import WelcomeScreen from './src/screens/WelcomeScreen';
 import ViewAttendanceScreen from './src/screens/ViewAttendanceScreen';
+import UpdateTeacherScreen from './src/screens/UpdateTeacherScreen';
 
 export default class App extends React.Component {
 
@@ -25,12 +26,13 @@ export default class App extends React.Component {
     const store = createStore(reducers, {}, applyMiddleware(ReduxThunk));
 
     const MainNavigator = StackNavigator({
-      mainMenu: { screen: MainMenuScreen },
       welcome: { screen: WelcomeScreen },
       register: { screen: RegisterScreen },
       login: { screen: LoginForm },
+      mainMenu: { screen: MainMenuScreen },
       newAttendance: { screen: NewAttendanceScreen },
-      viewAttendance: { screen: ViewAttendanceScreen }
+      viewAttendance: { screen: ViewAttendanceScreen },
+      updateTeacherInfo: { screen: UpdateTeacherScreen }
     });
 
     return (
