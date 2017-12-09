@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Alert, Text, TouchableOpacity, StyleSheet } from 'react-native'
+import { Alert, Text, TouchableOpacity } from 'react-native'
 import { connect } from 'react-redux';
 import { BarCodeScanner, Permissions } from 'expo';
 import { getAttendanceInfo } from '../actions';
@@ -9,27 +9,35 @@ class NewAttendace extends Component {
 	state = {
     hasCameraPermission: null,
     students: [],
-    showModal: false
+    isSuccessful: null
   }
 
 	onChangeTextHandler(value) {
-		console.log(value);
 		this.props.getAttendanceInfo(value);
 	}
 
 	async	onPressButton() {
-		const { className, date, hours } = this.props;
 		const { status } = await Permissions.askAsync(Permissions.CAMERA);
 		this.setState({ hasCameraPermission: status === 'granted' });
 	}
 
 	async handleBarCodeRead(value) {
-		let { students } = this.state;
+		const { students } = this.state;
 		students.push(value);
-		this.setState({ showModal: true, students });
+		const { status } = await Permissions.askAsync(Permissions.CAMERA);
+		this.setState({ hasCameraPermission: status === 'false', students, isSuccessful: true });
+		const studentsField = { prop: 'studentsField', value: students };
+		this.onChangeTextHandler(studentsField);
+	}
+
+	saveAttendanceRecord() {
+		const { className, date, hours, studentsField } = this.props;
+		console.log(className, studentsField);
 	}
 
 	renderForm() {
+		const { isSuccessful } = this.state;
+		const { className, date, hours } = this.props;
 		return (
 			<MainContainer>
 				<ItemContainer>
@@ -38,6 +46,7 @@ class NewAttendace extends Component {
 							placeholder="Class Name"
 							label="Class Name" 
 							onChangeText={(value) => this.onChangeTextHandler({ prop: 'className', value })}
+							value={className}
 						/>
 					</FieldContainer>
 					<FieldContainer>
@@ -46,6 +55,7 @@ class NewAttendace extends Component {
 							label="Date"
 							keyboardType="numeric" 
 							onChangeText={(value) => this.onChangeTextHandler({ prop: 'date', value })}
+							value={date}
 						/>
 					</FieldContainer>
 					<FieldContainer>
@@ -54,10 +64,21 @@ class NewAttendace extends Component {
 							label="Hour(s)"
 							keyboardType="numeric" 
 							onChangeText={(value) => this.onChangeTextHandler({ prop: 'hours', value })}
+							value={hours}
 						/>
 					</FieldContainer>
+					{isSuccessful && 
+						<FieldContainer>
+							<Text style={styles.successfulTextStyle}>
+								 Successfully saved, next student
+							</Text>
+						</FieldContainer>
+					}
 					<FieldContainer>
-						<Button onPress={this.onPressButton.bind(this)}>Save and Open Scanning</Button>
+						<Button onPress={this.onPressButton.bind(this)}>Open Scanning</Button>
+					</FieldContainer>
+					<FieldContainer>
+						<Button onPress={this.saveAttendanceRecord.bind(this)}>Save Attendance Record</Button>
 					</FieldContainer>
 				</ItemContainer>
 			</MainContainer>
@@ -69,7 +90,7 @@ class NewAttendace extends Component {
 			<MainContainer>
         <BarCodeScanner
           onBarCodeRead={(value) => this.handleBarCodeRead({ value })}
-          style={{ flex: 1 }}
+          style={{ height: 250, width: 250 }}
         />
       </MainContainer>
      
@@ -77,8 +98,9 @@ class NewAttendace extends Component {
 	}
 
 	renderLogic() {
-		const { hasCameraPermission } = this.state;
-		if (hasCameraPermission === null) {
+		const { hasCameraPermission, students } = this.state;
+		console.log(students)
+		if (hasCameraPermission == null || hasCameraPermission == false) {
 			return this.renderForm();
 		} else {
 			return this.renderCamera();
@@ -86,7 +108,7 @@ class NewAttendace extends Component {
 	}
 
 	render() {
-		console.log(this.state.students);
+		//console.log(this.state.students);
 		return (
 			this.renderLogic()
 		);
@@ -94,19 +116,18 @@ class NewAttendace extends Component {
 }
 
 const styles = {
-	modalStyle: {
-		flex: 1,
-    flexDirection: 'column',
-    justifyContent: 'center',
-    alignItems: 'center'
+	successfulTextStyle: {
+		color: 'green'
 	}
 };
 
 const mapStateToProps = ({ newAttendance }) => {
+	console.log(newAttendance)
 	return {
 			className: newAttendance.className,
 			date: newAttendance.date,
-			hours: newAttendance.hours
+			hours: newAttendance.hours,
+			studentsField: newAttendance.studentsField
 	};
 };
 

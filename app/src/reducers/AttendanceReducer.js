@@ -3,7 +3,8 @@ import { SAVE_ATTENDANCE_INFO } from '../actions/types';
 const INITIAL_STATE = {
 	className: '',
 	date: '',
-	hours: ''
+	hours: '',
+	studentField: null
 };
 
 export default (state = INITIAL_STATE, action) => {

@@ -5,14 +5,14 @@ import { getUser } from '../actions';
 
 class MainMenu extends Component {
 	componentDidMount() {
-		console.log("ad")
+		/*console.log("ad")
 		const { _id } = this.props.navigation.state.params.user.user;
-		this.props.getUser({ _id });
+		this.props.getUser({ _id });*/
 	}
 
 	render() {
 		const { navigate } = this.props.navigation;
-		const { user } = this.props;
+		//const { user } = this.props;
 		return (
 			<MainContainer>
 				<FieldContainer>
@@ -22,9 +22,9 @@ class MainMenu extends Component {
 					<Button onPress={() => navigate('viewAttendance')}>View attendance results</Button>
 				</FieldContainer>
 				<FieldContainer>
-					<Button onPress={() => navigate('updateTeacherInfo', { user })}>
+					{/*<Button onPress={() => navigate('updateTeacherInfo', { user })}>
 						Update Teacher Information
-					</Button>
+					</Button>*/}
 				</FieldContainer>
 			</MainContainer>
 		);
