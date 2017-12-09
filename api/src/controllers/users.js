@@ -128,7 +128,6 @@ function logInUser (req, res, next) {
       /*const token = generateToken({
         id: user.id,
       })*/
-      console.log(user)
       return res.json({
         user
       })
@@ -136,13 +135,26 @@ function logInUser (req, res, next) {
   })
 }
 
-function list (req, res) {
-  User.find((error, users) => {
+function updateTeacher (req, res) {
+  const body = req.body;
+  User.findById(req.body._id, (error, user) => {
     if(error) {
-      return res.status(500).json("Hata")
+      return res.send(500).json("Error");
     }
-    res.json({ users })
+    if(!user) {
+      return res.status(404).json("User can not found");
+    }
+    console.log(user)
+    user.name = body.name;
+    user.surname = body.surname;
+
+    user.save((error, user) => {
+      if(error) {
+        return res.send(500).json({message: "Could not saved"})
+      }
+      res.json({ user });
+    });
   });
 }
 
-module.exports = { registerUser, logInUser, list };
+module.exports = { registerUser, logInUser, updateTeacher };

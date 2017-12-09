@@ -1,5 +1,6 @@
 import axios from 'axios';
 import { 
+	URL,
 	ON_CHANGE_TEXT, 
 	LOGIN_USER, 
 	LOGIN_USER_SUCCESS, 
@@ -18,7 +19,7 @@ export const onChangeTextHandler = ({ prop, value }) => {
 export const signUp = ({ email, password, name, surname, navigate }) => {
 	return dispatch => {
 		dispatch({ type: LOGIN_USER });
-		return axios.post('http://192.168.1.5:3000/users', { email, password, name, surname })
+		return axios.post(`${URL}/users`, { email, password, name, surname })
 			.then(result => {
 				dispatch({
 					type: SIGNUP_SUCCESS,
@@ -38,7 +39,7 @@ export const login = ({ email, password, navigate }) => {
 	return dispatch => {
 		dispatch({ type: LOGIN_USER });
 
-		return axios.post('http://192.168.1.5:3000/users/login', { email, password })
+		return axios.post(`${URL}/users/login`, { email, password })
 			.then(result => {
 				dispatch({
 					type: LOGIN_USER_SUCCESS,

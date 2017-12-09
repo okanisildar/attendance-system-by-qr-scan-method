@@ -4,6 +4,6 @@ const userController = require('../controllers/users');
 
 users.post('/', userController.registerUser);
 users.post('/login', userController.logInUser);
-users.get('/', userController.list);
+users.put('/update-teacher', userController.updateTeacher);
 
 module.exports = users;

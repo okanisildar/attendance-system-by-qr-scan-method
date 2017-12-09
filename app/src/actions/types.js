@@ -1,3 +1,4 @@
+export const URL = 'http://192.168.1.5:3000';
 export const ON_CHANGE_TEXT = 'on_change_text';
 export const SAVE_ATTENDANCE_INFO = 'save_attendance_info';
 export const LOGIN_USER = 'login_user';

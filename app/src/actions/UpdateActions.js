@@ -1,8 +1,20 @@
-import { ON_CHANGE_TEXT, UPDATE_SUCCESS, UPDATE_FAIL } from './types';
+import axios from 'axios';
+import { URL, UPDATE_SUCCESS, UPDATE_FAIL } from './types';
 
-export const onChangeTextHandler = ({ prop, value }) => {
-	return {
-		type: ON_CHANGE_TEXT,
-		payload: { prop, value }
+export const updateTeacher = ({ _id, name, surname }) => {
+	return dispatch => {
+		return axios.put(`${URL}/users/update-teacher`, { _id, name, surname })
+			.then(result => {
+				dispatch({
+					type: UPDATE_SUCCESS,
+					payload: result
+				});
+			})
+			.catch(() => {
+				dispatch({
+					type: UPDATE_FAIL
+				});
+			});
 	};
 };
+
