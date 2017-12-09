@@ -9,6 +9,7 @@ export const updateTeacher = ({ _id, name, surname }) => {
 					type: UPDATE_SUCCESS,
 					payload: result
 				});
+				//navigate('mainMenu');
 			})
 			.catch(() => {
 				dispatch({

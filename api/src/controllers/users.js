@@ -144,7 +144,6 @@ function updateTeacher (req, res) {
     if(!user) {
       return res.status(404).json("User can not found");
     }
-    console.log(user)
     user.name = body.name;
     user.surname = body.surname;
 
@@ -157,4 +156,18 @@ function updateTeacher (req, res) {
   });
 }
 
-module.exports = { registerUser, logInUser, updateTeacher };
+function getUser (req, res) {
+  console.log(req.body)
+  User.findById(req.body._id, (error, user) => {
+    if(error) {
+      return res.send(500).json("Error");
+    }
+    if(!user) {
+      return res.status(404).json("User can not found");
+    }
+    console.log("167", user)
+    res.json({ user });
+  });
+}
+
+module.exports = { registerUser, logInUser, updateTeacher, getUser };

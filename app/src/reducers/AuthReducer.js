@@ -3,6 +3,7 @@ import {
 	LOGIN_USER, 
 	LOGIN_USER_SUCCESS, 
 	LOGIN_USER_FAIL, 
+	GET_USER,
 	SIGNUP_SUCCESS, 
 	SIGNUP_FAIL 
 } from '../actions/types';
@@ -19,6 +20,8 @@ export default (state = INITIAL_STATE, action) => {
 			return { ...state, user: action.payload, loading: false };
 		case LOGIN_USER_FAIL:
 			return { ...state, error: 'Authentication failed', email: '', password: '', loading: false };
+		case GET_USER:
+			return { ...state, user: action.payload };
 		case SIGNUP_SUCCESS:
 			return { ...state, user: action.payload, loading: false };
 		case SIGNUP_FAIL:

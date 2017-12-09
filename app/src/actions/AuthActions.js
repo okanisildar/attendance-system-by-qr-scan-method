@@ -5,6 +5,7 @@ import {
 	LOGIN_USER, 
 	LOGIN_USER_SUCCESS, 
 	LOGIN_USER_FAIL, 
+	GET_USER,
 	SIGNUP_SUCCESS, 
 	SIGNUP_FAIL 
 } from './types';
@@ -50,6 +51,18 @@ export const login = ({ email, password, navigate }) => {
 			.catch(() => {
 				dispatch({
 					type: LOGIN_USER_FAIL
+				});
+			});
+	};
+};
+
+export const getUser = ({ _id }) => {
+	return dispatch => {
+		return axios.post(`${URL}/users/get-user`, { _id })
+			.then(result => {
+				dispatch({
+					type: GET_USER,
+					payload: result.data
 				});
 			});
 	};

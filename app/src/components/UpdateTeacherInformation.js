@@ -6,11 +6,10 @@ import { MainContainer, Input, FieldContainer, ItemContainer, Button } from './c
 
 class UpdateTeacherInformation extends Component {
 	componentWillMount() {
-		const { user } = this.props.navigation.state.params.data;
+		const { user } = this.props.navigation.state.params.user;
 		_.each(user, (value, prop) => {
 				this.props.onChangeTextHandler({ prop, value });
 		});
-		console.log(user);
   }
 
 	onChangeTextHandler(value) {
@@ -18,7 +17,8 @@ class UpdateTeacherInformation extends Component {
 	}
 
 	onButtonPressed(name, surname) {
-		const { _id } = this.props;
+		const { _id, navigation } = this.props;
+		//const { navigate } = this.props.navigation;
 		this.props.updateTeacher({ _id, name, surname });
 	}
 

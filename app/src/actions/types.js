@@ -8,3 +8,4 @@ export const SIGNUP_SUCCESS = 'signup_success';
 export const SIGNUP_FAIL = 'signup_fail';
 export const UPDATE_SUCCESS = 'update_success';
 export const UPDATE_FAIL = 'update_fail';
+export const GET_USER = 'get_user';
