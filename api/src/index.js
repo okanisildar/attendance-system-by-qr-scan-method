@@ -8,6 +8,7 @@ const app = express();
 const teachers = require('./routes/teachers');
 const students = require('./routes/students');
 const users = require('./routes/users');
+const attendance = require('./routes/attendance');
 const mongo = require('./config/mongo');
 
 app.use(cors());
@@ -26,6 +27,7 @@ app.get('/', (req, res) => res.send("Hello"));
 app.use('/users' , users);
 app.use('/teachers' , teachers);
 app.use('/students', students);
+app.use('/attendance', attendance);
 
 
 app.listen(3000, () => console.log("app is running on port 3000"));
