@@ -46,7 +46,7 @@ export const login = ({ email, password, navigate }) => {
 					type: LOGIN_USER_SUCCESS,
 					payload: result.data
 				});
-				navigate('mainMenu', { user: result.data });
+				navigate('mainMenu', { user: result.data.user });
 			})
 			.catch(() => {
 				dispatch({
@@ -62,7 +62,7 @@ export const getUser = ({ _id }) => {
 			.then(result => {
 				dispatch({
 					type: GET_USER,
-					payload: result.data
+					payload: result.data.user
 				});
 			});
 	};

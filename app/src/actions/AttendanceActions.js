@@ -6,3 +6,9 @@ export const getAttendanceInfo = ({ prop, value }) => {
 		payload: { prop, value }
 	};
 };
+
+export const saveAttendanceRecord = ({ courseName, date, hours, students, teacherId }) => {
+	return {
+
+	};
+};

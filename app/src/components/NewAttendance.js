@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Alert, Text, TouchableOpacity } from 'react-native'
+import { Text } from 'react-native';
 import { connect } from 'react-redux';
 import { BarCodeScanner, Permissions } from 'expo';
 import { getAttendanceInfo } from '../actions';
@@ -8,8 +8,6 @@ import { MainContainer, Input, FieldContainer, ItemContainer, Button } from './c
 class NewAttendace extends Component {
 	state = {
     hasCameraPermission: null,
-    students: [],
-    isSuccessful: null
   }
 
 	onChangeTextHandler(value) {
@@ -22,22 +20,25 @@ class NewAttendace extends Component {
 	}
 
 	async handleBarCodeRead(value) {
-		const { students } = this.state;
+		const students = [];
 		students.push(value);
 		const { status } = await Permissions.askAsync(Permissions.CAMERA);
-		this.setState({ hasCameraPermission: status === 'false', students, isSuccessful: true });
+		this.setState({ hasCameraPermission: status === 'false' });
 		const studentRecords = { prop: 'students', value: students };
+		const isSuccessful = { prop: 'isSuccessful', value: true };
+		this.onChangeTextHandler(isSuccessful);
 		this.onChangeTextHandler(studentRecords);
 	}
 
 	saveAttendanceRecord() {
 		const { courseName, date, hours, students } = this.props;
-		console.log(courseName, students);
+		const{ teacherId } = this.props.navigation.state.params;
+		this.props.saveAttendanceRecord(courseName, date, hours, students, teacherId);
 	}
 
 	renderForm() {
-		const { isSuccessful } = this.state;
-		const { courseName, date, hours } = this.props;
+		//const { isSuccessful } = this.state;
+		const { courseName, date, hours, isSuccessful } = this.props;
 		return (
 			<MainContainer>
 				<ItemContainer>
@@ -70,7 +71,7 @@ class NewAttendace extends Component {
 					{isSuccessful && 
 						<FieldContainer>
 							<Text style={styles.successfulTextStyle}>
-								 Successfully saved, next student
+								Successfully saved, next student
 							</Text>
 						</FieldContainer>
 					}
@@ -98,9 +99,8 @@ class NewAttendace extends Component {
 	}
 
 	renderLogic() {
-		const { hasCameraPermission, students } = this.state;
-		console.log(students)
-		if (hasCameraPermission == null || hasCameraPermission == false) {
+		const { hasCameraPermission } = this.state;
+		if (hasCameraPermission == null || hasCameraPermission === false) {
 			return this.renderForm();
 		} else {
 			return this.renderCamera();
@@ -109,6 +109,7 @@ class NewAttendace extends Component {
 
 	render() {
 		//console.log(this.state.students);
+
 		return (
 			this.renderLogic()
 		);
@@ -122,12 +123,12 @@ const styles = {
 };
 
 const mapStateToProps = ({ newAttendance }) => {
-	console.log(newAttendance)
 	return {
 			courseName: newAttendance.courseName,
 			date: newAttendance.date,
 			hours: newAttendance.hours,
-			students: newAttendance.students
+			students: newAttendance.students,
+			isSuccessful: newAttendance.isSuccessful
 	};
 };
 

@@ -4,7 +4,8 @@ const INITIAL_STATE = {
 	courseName: '',
 	date: '',
 	hours: '',
-	students: null
+	students: null,
+	isSuccessful: null
 };
 
 export default (state = INITIAL_STATE, action) => {

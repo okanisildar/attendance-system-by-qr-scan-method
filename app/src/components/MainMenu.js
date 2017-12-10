@@ -5,18 +5,19 @@ import { getUser } from '../actions';
 
 class MainMenu extends Component {
 	componentDidMount() {
-		/*console.log("ad")
-		const { _id } = this.props.navigation.state.params.user.user;
-		this.props.getUser({ _id });*/
+		const { _id } = this.props.navigation.state.params.user;
+		this.props.getUser({ _id });
 	}
 
 	render() {
 		const { navigate } = this.props.navigation;
-		//const { user } = this.props;
+		const { _id } = this.props.user;
 		return (
 			<MainContainer>
 				<FieldContainer>
-					<Button onPress={() => navigate('newAttendance')}>Create new attendance record</Button>
+					<Button onPress={() => navigate('newAttendance', { teacherId: _id })}>
+						Create new attendance record
+					</Button>
 				</FieldContainer>
 				<FieldContainer>
 					<Button onPress={() => navigate('viewAttendance')}>View attendance results</Button>
