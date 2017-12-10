@@ -157,7 +157,6 @@ function updateTeacher (req, res) {
 }
 
 function getUser (req, res) {
-  console.log(req.body)
   User.findById(req.body._id, (error, user) => {
     if(error) {
       return res.send(500).json("Error");
@@ -165,9 +164,35 @@ function getUser (req, res) {
     if(!user) {
       return res.status(404).json("User can not found");
     }
-    console.log("167", user)
     res.json({ user });
   });
 }
 
-module.exports = { registerUser, logInUser, updateTeacher, getUser };
+function list (req, res) {
+  User.find({},  (error, users) => {
+    if(error) {
+      return res.send(500).json("There is an error");
+    }
+    res.json({ users });
+  })
+}
+
+function destroy(req, res) {
+  User.findById(req.params.id, (error, user) => {
+    if(error) {
+      return res.status(500).json("There is an error");
+    }
+    if(!user) {
+      return res.status(404).json("User could not found");
+    }
+
+    user.remove( (error, user) => {
+      if(error) {
+        return res.status(500).json("User could not deleted");
+      }
+      res.json({ success: true });
+    });
+  });
+}
+
+module.exports = { registerUser, logInUser, updateTeacher, getUser, list, destroy };
