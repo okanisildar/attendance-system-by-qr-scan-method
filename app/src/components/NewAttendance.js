@@ -26,27 +26,27 @@ class NewAttendace extends Component {
 		students.push(value);
 		const { status } = await Permissions.askAsync(Permissions.CAMERA);
 		this.setState({ hasCameraPermission: status === 'false', students, isSuccessful: true });
-		const studentsField = { prop: 'studentsField', value: students };
-		this.onChangeTextHandler(studentsField);
+		const studentRecords = { prop: 'students', value: students };
+		this.onChangeTextHandler(studentRecords);
 	}
 
 	saveAttendanceRecord() {
-		const { className, date, hours, studentsField } = this.props;
-		console.log(className, studentsField);
+		const { courseName, date, hours, students } = this.props;
+		console.log(courseName, students);
 	}
 
 	renderForm() {
 		const { isSuccessful } = this.state;
-		const { className, date, hours } = this.props;
+		const { courseName, date, hours } = this.props;
 		return (
 			<MainContainer>
 				<ItemContainer>
 					<FieldContainer>
 						<Input 
-							placeholder="Class Name"
-							label="Class Name" 
-							onChangeText={(value) => this.onChangeTextHandler({ prop: 'className', value })}
-							value={className}
+							placeholder="Course Name"
+							label="Course Name" 
+							onChangeText={(value) => this.onChangeTextHandler({ prop: 'courseName', value })}
+							value={courseName}
 						/>
 					</FieldContainer>
 					<FieldContainer>
@@ -124,10 +124,10 @@ const styles = {
 const mapStateToProps = ({ newAttendance }) => {
 	console.log(newAttendance)
 	return {
-			className: newAttendance.className,
+			courseName: newAttendance.courseName,
 			date: newAttendance.date,
 			hours: newAttendance.hours,
-			studentsField: newAttendance.studentsField
+			students: newAttendance.students
 	};
 };
 

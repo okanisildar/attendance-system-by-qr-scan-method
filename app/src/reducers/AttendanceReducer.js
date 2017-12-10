@@ -1,10 +1,10 @@
 import { SAVE_ATTENDANCE_INFO } from '../actions/types';
 
 const INITIAL_STATE = {
-	className: '',
+	courseName: '',
 	date: '',
 	hours: '',
-	studentField: null
+	students: null
 };
 
 export default (state = INITIAL_STATE, action) => {
