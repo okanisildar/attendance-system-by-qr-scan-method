@@ -17,10 +17,6 @@ import UpdateTeacherScreen from './src/screens/UpdateTeacherScreen';
 
 export default class App extends React.Component {
 
-  componentDidMount() {
-   
-  }
-
   render() {
     const store = createStore(reducers, {}, applyMiddleware(ReduxThunk));
 
