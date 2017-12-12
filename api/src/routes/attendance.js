@@ -1,5 +1,7 @@
 const express = require('express');
-const attendanceRecords = express.Router();
+const attendance = express.Router();
 const attendanceController = require('../controllers/attendance');
 
- module.exports = attendanceRecords;
+attendance.post('/', attendanceController.save);
+
+module.exports = attendanceRecords;
