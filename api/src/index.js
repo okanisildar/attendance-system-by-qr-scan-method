@@ -27,7 +27,7 @@ app.get('/', (req, res) => res.send("Hello"));
 app.use('/users' , users);
 app.use('/teachers' , teachers);
 app.use('/students', students);
-//app.use('/attendance', attendance);
+app.use('/attendance', attendance);
 
 
 app.listen(3000, () => console.log("app is running on port 3000"));
