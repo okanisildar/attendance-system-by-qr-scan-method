@@ -19,6 +19,7 @@ export const saveAttendanceRecord = ({ courseName, date, hours, students, teache
 		dispatch({ type: SAVE_ATTENDANCE });
 		return axios.post(`${URL}/attendance`, { courseName, date, hours, students, teacherId })
 			.then(result => {
+				console.log(result)
 				dispatch({
 					type: SAVE_ATTENDANCE_SUCCESS,
 					payload: result

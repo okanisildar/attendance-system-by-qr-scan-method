@@ -2,10 +2,13 @@ import React, { Component } from 'react';
 import { Text } from 'react-native';
 import { connect } from 'react-redux';
 import { BarCodeScanner, Permissions } from 'expo';
-import { getAttendanceInfo } from '../actions';
+import { getAttendanceInfo, saveAttendanceRecord } from '../actions';
 import { MainContainer, Input, FieldContainer, ItemContainer, Button } from './common';
 
+
+
 class NewAttendace extends Component {
+
 	state = {
     hasCameraPermission: null,
   }
@@ -20,7 +23,7 @@ class NewAttendace extends Component {
 	}
 
 	async handleBarCodeRead(value) {
-		const students = [];
+		const { students } = this.props;
 		students.push(value);
 		const { status } = await Permissions.askAsync(Permissions.CAMERA);
 		this.setState({ hasCameraPermission: status === 'false' });
@@ -32,8 +35,9 @@ class NewAttendace extends Component {
 
 	saveAttendanceRecord() {
 		const { courseName, date, hours, students } = this.props;
-		const{ teacherId } = this.props.navigation.state.params;
-		this.props.saveAttendanceRecord(courseName, date, hours, students, teacherId);
+		//const { teacherId } = this.props.navigation.state.params;
+		const teacherId = 3;
+		this.props.saveAttendanceRecord({courseName, date, hours, students, teacherId});
 	}
 
 	renderForm() {
@@ -132,4 +136,4 @@ const mapStateToProps = ({ newAttendance }) => {
 	};
 };
 
-export default connect(mapStateToProps, { getAttendanceInfo })(NewAttendace);
+export default connect(mapStateToProps, { getAttendanceInfo, saveAttendanceRecord })(NewAttendace);

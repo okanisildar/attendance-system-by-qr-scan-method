@@ -4,7 +4,7 @@ const INITIAL_STATE = {
 	courseName: '',
 	date: '',
 	hours: '',
-	students: null,
+	students: [],
 	isSuccessful: null
 };
 
