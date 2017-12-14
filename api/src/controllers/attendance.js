@@ -17,6 +17,17 @@ function create(req, res) {
 	});
 }
 
+function getAttendanceRecordsByTeacher(req, res) {
+	const body = req.body;
+	const teacherId = body.teacherId;
+	Attendance.find({'teacherId' :teacherId }, (error, attendance) => {
+		if(error) {
+			return res.status(500).json("There is an error", error);
+		}
+		res.json({ attendance })
+	})
+}
+
 function list (req, res) {
 	Attendance.find({}, (error, attendances) => {
 		if(error) {
