@@ -6,7 +6,6 @@ import { getAttendanceInfo, saveAttendanceRecord } from '../actions';
 import { MainContainer, Input, FieldContainer, ItemContainer, Button } from './common';
 
 
-
 class NewAttendace extends Component {
 
 	state = {
@@ -37,7 +36,7 @@ class NewAttendace extends Component {
 		const { courseName, date, hours, students } = this.props;
 		//const { teacherId } = this.props.navigation.state.params;
 		const teacherId = 3;
-		this.props.saveAttendanceRecord({courseName, date, hours, students, teacherId});
+		this.props.saveAttendanceRecord({ courseName, date, hours, students, teacherId });
 	}
 
 	renderForm() {

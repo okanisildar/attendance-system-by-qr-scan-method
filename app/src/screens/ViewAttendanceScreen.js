@@ -4,7 +4,7 @@ import ViewAttendance from '../components/ViewAttendance';
 class ViewAttendanceScreen extends Component {
 	render() {
 		return (
-			<ViewAttendance />
+			<ViewAttendance navigation={this.props.navigation} />
 		);
 	}
 }

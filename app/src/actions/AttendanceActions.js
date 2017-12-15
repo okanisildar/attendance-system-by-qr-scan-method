@@ -1,10 +1,10 @@
 import axios from 'axios';
 import { 
 	URL, 
-	SAVE_ATTENDANCE, 
 	SAVE_ATTENDANCE_SUCCESS, 
 	SAVE_ATTENDANCE_FAIL, 
-	SAVE_ATTENDANCE_INFO 
+	SAVE_ATTENDANCE_INFO,
+	SEND_REQUEST 
 } from './types';
 
 export const getAttendanceInfo = ({ prop, value }) => {
@@ -16,10 +16,9 @@ export const getAttendanceInfo = ({ prop, value }) => {
 
 export const saveAttendanceRecord = ({ courseName, date, hours, students, teacherId }) => {
 	return dispatch => {
-		dispatch({ type: SAVE_ATTENDANCE });
+		dispatch({ type: SEND_REQUEST });
 		return axios.post(`${URL}/attendance`, { courseName, date, hours, students, teacherId })
 			.then(result => {
-				console.log(result)
 				dispatch({
 					type: SAVE_ATTENDANCE_SUCCESS,
 					payload: result
@@ -29,6 +28,16 @@ export const saveAttendanceRecord = ({ courseName, date, hours, students, teache
 				dispatch({
 					type: SAVE_ATTENDANCE_FAIL
 				});
+			});
+	};
+};
+
+export const getRecords = ({ teacherId }) => {
+	return dispatch => {
+		dispatch({ type: SEND_REQUEST });
+		return axios.post(`${URL}/attendance/getRecords`, { teacherId })
+			.then(result => {
+				console.log(result);
 			});
 	};
 };

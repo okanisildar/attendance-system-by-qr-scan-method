@@ -3,6 +3,7 @@ export const URL = 'http://192.168.1.4:3000';
 export const ON_CHANGE_TEXT = 'on_change_text';
 export const SAVE_ATTENDANCE_INFO = 'save_attendance_info';
 export const GET_USER = 'get_user';
+export const SEND_REQUEST = 'send_request';
 
 //auth
 export const LOGIN_USER = 'login_user';

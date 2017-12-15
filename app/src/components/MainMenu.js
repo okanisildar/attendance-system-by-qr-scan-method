@@ -20,7 +20,7 @@ class MainMenu extends Component {
 					</Button>
 				</FieldContainer>
 				<FieldContainer>
-					<Button onPress={() => navigate('viewAttendance')}>View attendance results</Button>
+					<Button onPress={() => navigate('viewAttendance', { teacherId: _id })}>View attendance results</Button>
 				</FieldContainer>
 				<FieldContainer>
 					{/*<Button onPress={() => navigate('updateTeacherInfo', { user })}>

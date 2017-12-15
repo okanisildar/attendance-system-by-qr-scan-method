@@ -21,12 +21,12 @@ export default class App extends React.Component {
     const store = createStore(reducers, {}, applyMiddleware(ReduxThunk));
 
     const MainNavigator = StackNavigator({
-       newAttendance: { screen: NewAttendanceScreen },
+       
       welcome: { screen: WelcomeScreen },
       register: { screen: RegisterScreen },
       login: { screen: LoginForm },
       mainMenu: { screen: MainMenuScreen },
-     
+     newAttendance: { screen: NewAttendanceScreen },
       viewAttendance: { screen: ViewAttendanceScreen },
       updateTeacherInfo: { screen: UpdateTeacherScreen }
     });
