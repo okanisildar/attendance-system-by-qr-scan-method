@@ -20,11 +20,11 @@ function create(req, res) {
 function getAttendanceRecordsByTeacher(req, res) {
 	const body = req.body;
 	const teacherId = body.teacherId;
-	Attendance.find({'teacherId' :teacherId }, (error, attendance) => {
+	Attendance.find({'teacherId' :teacherId }, (error, records) => {
 		if(error) {
 			return res.status(500).json("There is an error", error);
 		}
-		res.json({ attendance })
+		res.json({ records })
 	})
 }
 
@@ -39,4 +39,4 @@ function list (req, res) {
 }
 
 
-module.exports = { create, list };
+module.exports = { create, list, getAttendanceRecordsByTeacher };

@@ -4,5 +4,6 @@ const attendanceController = require('../controllers/attendance');
 
 attendance.post('/', attendanceController.create);
 attendance.get('/', attendanceController.list);
+attendance.post('/getRecords', attendanceController.getAttendanceRecordsByTeacher);
 
 module.exports = attendance;
