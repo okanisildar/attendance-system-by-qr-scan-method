@@ -20,3 +20,6 @@ export const UPDATE_FAIL = 'update_fail';
 export const SAVE_ATTENDANCE = 'save_attendance';
 export const SAVE_ATTENDANCE_SUCCESS = 'save_attendance_success';
 export const SAVE_ATTENDANCE_FAIL = 'save_attendance_fail';
+export const GET_RECORDS_SUCCESS = 'get_records_success';
+export const GET_RECORDS_FAIL = 'get_records_fail';
+

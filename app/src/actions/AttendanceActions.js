@@ -4,7 +4,9 @@ import {
 	SAVE_ATTENDANCE_SUCCESS, 
 	SAVE_ATTENDANCE_FAIL, 
 	SAVE_ATTENDANCE_INFO,
-	SEND_REQUEST 
+	SEND_REQUEST,
+	GET_RECORDS_SUCCESS,
+	GET_RECORDS_FAIL
 } from './types';
 
 export const getAttendanceInfo = ({ prop, value }) => {
@@ -37,7 +39,15 @@ export const getRecords = ({ teacherId }) => {
 		dispatch({ type: SEND_REQUEST });
 		return axios.post(`${URL}/attendance/getRecords`, { teacherId })
 			.then(result => {
-				console.log(result);
+				dispatch({
+					type: GET_RECORDS_SUCCESS,
+					payload: result.data
+				});
+			})
+			.catch(() => {
+				dispatch({
+					type: GET_RECORDS_FAIL,
+				});
 			});
 	};
 };

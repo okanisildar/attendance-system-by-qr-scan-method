@@ -7,7 +7,6 @@ import { MainContainer, Input, FieldContainer, ItemContainer, Button } from './c
 
 
 class NewAttendace extends Component {
-
 	state = {
     hasCameraPermission: null,
   }
@@ -34,14 +33,13 @@ class NewAttendace extends Component {
 
 	saveAttendanceRecord() {
 		const { courseName, date, hours, students } = this.props;
-		//const { teacherId } = this.props.navigation.state.params;
-		const teacherId = 3;
+		const { teacherId } = this.props.navigation.state.params;
 		this.props.saveAttendanceRecord({ courseName, date, hours, students, teacherId });
 	}
 
 	renderForm() {
 		//const { isSuccessful } = this.state;
-		const { courseName, date, hours, isSuccessful } = this.props;
+		const { courseName, date, hours, isSuccessful, result } = this.props;
 		return (
 			<MainContainer>
 				<ItemContainer>
@@ -56,8 +54,7 @@ class NewAttendace extends Component {
 					<FieldContainer>
 						<Input
 							placeholder="16-10-2017" 
-							label="Date"
-							keyboardType="numeric" 
+							label="Date" 
 							onChangeText={(value) => this.onChangeTextHandler({ prop: 'date', value })}
 							value={date}
 						/>
@@ -84,6 +81,13 @@ class NewAttendace extends Component {
 					<FieldContainer>
 						<Button onPress={this.saveAttendanceRecord.bind(this)}>Save Attendance Record</Button>
 					</FieldContainer>
+					{result && 
+						<FieldContainer>
+							<Text style={styles.successfulTextStyle}>
+								Successfully saved
+							</Text>
+						</FieldContainer>
+					}
 				</ItemContainer>
 			</MainContainer>
 		);
@@ -125,13 +129,14 @@ const styles = {
 	}
 };
 
-const mapStateToProps = ({ newAttendance }) => {
+const mapStateToProps = ({ attendance }) => {
 	return {
-			courseName: newAttendance.courseName,
-			date: newAttendance.date,
-			hours: newAttendance.hours,
-			students: newAttendance.students,
-			isSuccessful: newAttendance.isSuccessful
+			courseName: attendance.courseName,
+			date: attendance.date,
+			hours: attendance.hours,
+			students: attendance.students,
+			isSuccessful: attendance.isSuccessful,
+			result: attendance.result
 	};
 };
 

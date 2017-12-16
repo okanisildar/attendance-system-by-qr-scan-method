@@ -5,6 +5,6 @@ import UpdateReducer from './UpdateReducer';
 
 export default combineReducers({
 	auth: AuthReducer,
-	newAttendance: AttendanceReducer,
+	attendance: AttendanceReducer,
 	update: UpdateReducer
 });
