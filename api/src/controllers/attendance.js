@@ -31,7 +31,6 @@ function getAttendanceRecordsByTeacher(req, res) {
 function list (req, res) {
 	Attendance.find({}, (error, attendances) => {
 		if(error) {
-			console.log(error)
 			return res.status(500).json("There is an error");
 		}
 		res.json({ attendances });

@@ -8,12 +8,14 @@ import {
 	SIGNUP_FAIL 
 } from '../actions/types';
 
-const INITIAL_STATE = { email: '', password: '', user: null, error: '', loading: null };
+const INITIAL_STATE = { 
+	email: '', password: '', user: null, error: '', loading: null, singUpError: '' 
+};
 
 export default (state = INITIAL_STATE, action) => {
 	switch (action.type) {
 		case ON_CHANGE_TEXT:
-			return { ...state, [action.payload.prop]: action.payload.value };
+			return { ...state, [action.payload.prop]: action.payload.value, error: '' };
 		case LOGIN_USER:
 			return { ...state, loading: true, error: '' };
 		case LOGIN_USER_SUCCESS:
@@ -25,7 +27,9 @@ export default (state = INITIAL_STATE, action) => {
 		case SIGNUP_SUCCESS:
 			return { ...state, user: action.payload, loading: false };
 		case SIGNUP_FAIL:
-			return { ...state, error: 'Registration failed', email: '', password: '', loading: false };
+			return { 
+				...state, singUpError: 'Registration failed', email: '', password: '', loading: false 
+			};
 		default:
 			return state;
 	}

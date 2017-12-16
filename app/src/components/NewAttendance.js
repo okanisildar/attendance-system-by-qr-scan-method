@@ -2,13 +2,15 @@ import React, { Component } from 'react';
 import { Text } from 'react-native';
 import { connect } from 'react-redux';
 import { BarCodeScanner, Permissions } from 'expo';
+import DateTimePicker from 'react-native-modal-datetime-picker';
 import { getAttendanceInfo, saveAttendanceRecord } from '../actions';
-import { MainContainer, Input, FieldContainer, ItemContainer, Button } from './common';
+import { MainContainer, Input, FieldContainer, ItemContainer, Button, Spinner } from './common';
 
 
 class NewAttendace extends Component {
 	state = {
     hasCameraPermission: null,
+    isDateTimePickerVisible: false
   }
 
 	onChangeTextHandler(value) {
@@ -31,6 +33,14 @@ class NewAttendace extends Component {
 		this.onChangeTextHandler(studentRecords);
 	}
 
+	showDateTimePicker() {
+		this.setState({ isDateTimePickerVisible: true });
+	}
+
+	hideDateTimePicker() {
+		this.setState({ isDateTimePickerVisible: false });
+	}
+
 	saveAttendanceRecord() {
 		const { courseName, date, hours, students } = this.props;
 		const { teacherId } = this.props.navigation.state.params;
@@ -38,8 +48,7 @@ class NewAttendace extends Component {
 	}
 
 	renderForm() {
-		//const { isSuccessful } = this.state;
-		const { courseName, date, hours, isSuccessful, result } = this.props;
+		const { courseName, hours, isSuccessful, result, loading } = this.props;
 		return (
 			<MainContainer>
 				<ItemContainer>
@@ -52,11 +61,13 @@ class NewAttendace extends Component {
 						/>
 					</FieldContainer>
 					<FieldContainer>
-						<Input
-							placeholder="16-10-2017" 
-							label="Date" 
-							onChangeText={(value) => this.onChangeTextHandler({ prop: 'date', value })}
-							value={date}
+						<Button onPress={this.showDateTimePicker.bind(this)}>
+							Choose Date
+						</Button>
+						<DateTimePicker
+							isVisible={this.state.isDateTimePickerVisible}
+							onConfirm={(value) => this.onChangeTextHandler({ prop: 'date', value })}
+							onCancel={this.hideDateTimePicker.bind(this)}
 						/>
 					</FieldContainer>
 					<FieldContainer>
@@ -69,24 +80,23 @@ class NewAttendace extends Component {
 						/>
 					</FieldContainer>
 					{isSuccessful && 
-						<FieldContainer>
-							<Text style={styles.successfulTextStyle}>
-								Successfully saved, next student
-							</Text>
-						</FieldContainer>
+						<Text style={styles.successfulTextStyle}>
+							Successfully saved, next student
+						</Text>
 					}
 					<FieldContainer>
 						<Button onPress={this.onPressButton.bind(this)}>Open Scanning</Button>
 					</FieldContainer>
 					<FieldContainer>
+					{loading ?
+						<Spinner /> :
 						<Button onPress={this.saveAttendanceRecord.bind(this)}>Save Attendance Record</Button>
+					}
 					</FieldContainer>
 					{result && 
-						<FieldContainer>
-							<Text style={styles.successfulTextStyle}>
-								Successfully saved
-							</Text>
-						</FieldContainer>
+						<Text style={styles.successfulTextStyle}>
+							Successfully saved
+						</Text>
 					}
 				</ItemContainer>
 			</MainContainer>
@@ -98,7 +108,7 @@ class NewAttendace extends Component {
 			<MainContainer>
         <BarCodeScanner
           onBarCodeRead={(value) => this.handleBarCodeRead({ value })}
-          style={{ height: 250, width: 250 }}
+          style={{ height: 250, width: 250, alignSelf: 'center' }}
         />
       </MainContainer>
      
@@ -109,9 +119,8 @@ class NewAttendace extends Component {
 		const { hasCameraPermission } = this.state;
 		if (hasCameraPermission == null || hasCameraPermission === false) {
 			return this.renderForm();
-		} else {
+		} 
 			return this.renderCamera();
-		}
 	}
 
 	render() {
@@ -125,7 +134,9 @@ class NewAttendace extends Component {
 
 const styles = {
 	successfulTextStyle: {
-		color: 'green'
+		color: 'green',
+		alignSelf: 'center',
+		fontSize: 20
 	}
 };
 
@@ -136,7 +147,8 @@ const mapStateToProps = ({ attendance }) => {
 			hours: attendance.hours,
 			students: attendance.students,
 			isSuccessful: attendance.isSuccessful,
-			result: attendance.result
+			result: attendance.result,
+			loading: attendance.loading
 	};
 };
 

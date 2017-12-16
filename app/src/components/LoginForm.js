@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { View, Text } from 'react-native';
 import { connect } from 'react-redux';
 import { onChangeTextHandler, login } from '../actions';
-import { MainContainer, Input, FieldContainer, ItemContainer, Button } from './common';
+import { MainContainer, Input, FieldContainer, ItemContainer, Button, Spinner } from './common';
 
 
 class LoginForm extends Component {
@@ -22,6 +22,7 @@ class LoginForm extends Component {
 	}
 
   render() {
+		const { loading, error } = this.props; 
     return (
 			<View style={{ flex: 1 }}>
 				<MainContainer>
@@ -41,13 +42,14 @@ class LoginForm extends Component {
 								label='Password' 
 							/>
 						</FieldContainer>
-						<FieldContainer>
 							<Text style={styles.errorTextStyle}>
-								{this.props.error}
+								{error}
 							</Text>
-						</FieldContainer>
 						<FieldContainer>
+						{loading ? 
+							<Spinner /> :
 							<Button onPress={this.onButtonPress.bind(this)}>Login</Button>
+						}
 						</FieldContainer>
 					</ItemContainer>
 				</MainContainer>

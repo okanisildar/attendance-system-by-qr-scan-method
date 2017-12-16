@@ -53,7 +53,7 @@ class RegisterForm extends Component {
 						</FieldContainer>
 						<FieldContainer>
 							<Text style={styles.errorTextStyle}>
-								{this.props.error}
+								{this.props.singUpError}
 							</Text>
 						</FieldContainer>
 						<FieldContainer>
@@ -75,9 +75,9 @@ const styles = {
 };
 
 const mapStateToProps = (state) => {
-	const { email, password, name, surname, error, loading } = state.auth;
+	const { email, password, name, surname, singUpError, loading } = state.auth;
 
-	return { email, password, name, surname, error, loading };
+	return { email, password, name, surname, singUpError, loading };
 };
 
 

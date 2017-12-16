@@ -10,17 +10,18 @@ const INITIAL_STATE = {
 	date: '',
 	hours: '',
 	students: [],
-	isSuccessful: null
+	isSuccessful: null,
+	loading: false
 };
 
 export default (state = INITIAL_STATE, action) => {
 	switch (action.type) {
 		case SEND_REQUEST:
-			return { ...state, isLoaded: false };
+			return { ...state, loading: true };
 		case SAVE_ATTENDANCE_INFO:
 			return { ...state, [action.payload.prop]: action.payload.value };
 		case SAVE_ATTENDANCE_SUCCESS:
-			return { ...state, result: action.payload, isLoaded: true };
+			return { ...state, result: action.payload, loading: false };
 		case GET_RECORDS_SUCCESS:
 			return { ...state, records: action.payload.records };
 		default:
