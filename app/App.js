@@ -14,6 +14,7 @@ import NewAttendanceScreen from './src/screens/NewAttendanceScreen';
 import WelcomeScreen from './src/screens/WelcomeScreen';
 import ViewAttendanceScreen from './src/screens/ViewAttendanceScreen';
 import UpdateTeacherScreen from './src/screens/UpdateTeacherScreen';
+import AttendanceDetailsScreen from './src/screens/AttendanceDetailsScreen';
 
 export default class App extends React.Component {
 
@@ -21,14 +22,15 @@ export default class App extends React.Component {
     const store = createStore(reducers, {}, applyMiddleware(ReduxThunk));
 
     const MainNavigator = StackNavigator({
-       newAttendance: { screen: NewAttendanceScreen },
+       
       welcome: { screen: WelcomeScreen },
       register: { screen: RegisterScreen },
       login: { screen: LoginForm },
       mainMenu: { screen: MainMenuScreen },
-     
+      newAttendance: { screen: NewAttendanceScreen },
       viewAttendance: { screen: ViewAttendanceScreen },
-      updateTeacherInfo: { screen: UpdateTeacherScreen }
+      updateTeacherInfo: { screen: UpdateTeacherScreen },
+      attendanceDetails: { screen: AttendanceDetailsScreen }
     });
 
     return (

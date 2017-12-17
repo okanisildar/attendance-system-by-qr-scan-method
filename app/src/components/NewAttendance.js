@@ -141,8 +141,6 @@ class NewAttendace extends Component {
 	}
 
 	render() {
-		console.log(this.state.result);
-
 		return (
 			this.renderLogic()
 		);

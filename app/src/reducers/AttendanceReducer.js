@@ -23,7 +23,7 @@ export default (state = INITIAL_STATE, action) => {
 		case SAVE_ATTENDANCE_SUCCESS:
 			return { ...state, result: action.payload, loading: false };
 		case GET_RECORDS_SUCCESS:
-			return { ...state, records: action.payload.records };
+			return { ...state, records: action.payload.records, loading: false };
 		default:
 			return state;
 	}

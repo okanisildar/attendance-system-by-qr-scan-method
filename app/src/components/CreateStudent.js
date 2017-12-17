@@ -1,10 +1,13 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { View } from 'react-native';
-import { onChangeTextHandler, createStudent } from '../actions';
+import { onChangeTextHandler, createStudent, getRecords } from '../actions';
 import { MainContainer, Input, FieldContainer, ItemContainer, Button } from './common';
 
 class CreateStudent extends Component {
+	componentDidMount() {
+		this.props.getRecords;
+	}
 
 	onChangeTextHandler(value) {
 		this.props.onChangeTextHandler(value);
@@ -13,11 +16,9 @@ class CreateStudent extends Component {
 	onButtonPressed() {
 		const { studentNumber, name, surname } = this.props;
 		this.props.createStudent({ studentNumber, name, surname });
-		console.log(this.props)
 	}
 
 	render() {
-		console.log(this.props)
 		return (
 			<View style={{ flex: 1 }}>
 				<MainContainer>
@@ -57,9 +58,10 @@ class CreateStudent extends Component {
 
 const mapStateToProps = state => {
 	const { studentNumber, name, surname, error, loading } = state.student;
-	return { studentNumber, name, surname, error, loading }; 
+	const { records } = state.attendance;
+	return { studentNumber, name, surname, error, loading, records }; 
 };
 
 
-export default connect(mapStateToProps, { onChangeTextHandler, createStudent })(CreateStudent);
+export default connect(mapStateToProps, { onChangeTextHandler, createStudent, getRecords })(CreateStudent);
 
