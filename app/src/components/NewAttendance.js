@@ -10,7 +10,8 @@ import { MainContainer, Input, FieldContainer, ItemContainer, Button, Spinner } 
 class NewAttendace extends Component {
 	state = {
     hasCameraPermission: null,
-    isDateTimePickerVisible: false
+    isDateTimePickerVisible: false,
+    isRepeating: false
   }
 
 	onChangeTextHandler(value) {
@@ -23,14 +24,24 @@ class NewAttendace extends Component {
 	}
 
 	async handleBarCodeRead(value) {
-		const { students } = this.props;
-		students.push(value);
+		const { data } = value.value;
+		this.checkIfStudentExists(data);
 		const { status } = await Permissions.askAsync(Permissions.CAMERA);
 		this.setState({ hasCameraPermission: status === 'false' });
-		const studentRecords = { prop: 'students', value: students };
-		const isSuccessful = { prop: 'isSuccessful', value: true };
-		this.onChangeTextHandler(isSuccessful);
-		this.onChangeTextHandler(studentRecords);
+	}
+
+	checkIfStudentExists(data) {
+		const { students } = this.props;
+		if (students.includes(data)) {
+			this.setState({ isRepeating: true });
+		} else {
+			students.push(data);
+			this.setState({ isRepeating: false });
+			const studentRecords = { prop: 'students', value: students };
+			const isSuccessful = { prop: 'isSuccessful', value: true };
+			this.onChangeTextHandler(isSuccessful);
+			this.onChangeTextHandler(studentRecords);
+		}
 	}
 
 	showDateTimePicker() {
@@ -48,6 +59,7 @@ class NewAttendace extends Component {
 	}
 
 	renderForm() {
+		const { isRepeating } = this.state;
 		const { courseName, hours, isSuccessful, result, loading } = this.props;
 		return (
 			<MainContainer>
@@ -79,9 +91,14 @@ class NewAttendace extends Component {
 							value={hours}
 						/>
 					</FieldContainer>
-					{isSuccessful && 
+					{isSuccessful && !isRepeating &&
 						<Text style={styles.successfulTextStyle}>
 							Successfully saved, next student
+						</Text>
+					}
+					{isRepeating &&
+						<Text style={styles.successfulTextStyle}>
+							Duplicated student
 						</Text>
 					}
 					<FieldContainer>
@@ -124,7 +141,7 @@ class NewAttendace extends Component {
 	}
 
 	render() {
-		//console.log(this.state.students);
+		console.log(this.state.result);
 
 		return (
 			this.renderLogic()

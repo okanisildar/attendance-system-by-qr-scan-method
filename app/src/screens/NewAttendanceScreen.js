@@ -5,11 +5,11 @@ import CreateStudent from '../components/CreateStudent';
 class NewAttendanceScreen extends Component {
 	render() {
 		return (
+			<NewAttendance navigation={this.props.navigation}/>
 			
-			<CreateStudent />
 		);
 	}
 }
 
 export default NewAttendanceScreen;
-{/*<NewAttendance navigation={this.props.navigation}/>*/}
+{/*<CreateStudent />*/}
