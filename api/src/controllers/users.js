@@ -146,7 +146,7 @@ function updateTeacher (req, res) {
     }
     user.name = body.name;
     user.surname = body.surname;
-
+    
     user.save((error, user) => {
       if(error) {
         return res.send(500).json({message: "Could not saved"})

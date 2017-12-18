@@ -1,12 +1,12 @@
 import React, { Component } from 'react';
 import { Text, TouchableWithoutFeedback, View } from 'react-native';
-import { NavigationActions } from 'react-navigation'
 import { FieldContainer, ItemContainer } from './common';
 
 class ListItem extends Component {
   onRowPress() {
+    const { record } = this.props;
     const { navigate } = this.props.navigation;
-    navigate('attendanceDetails');
+    navigate('attendanceDetails', { record });
   }
 
   render() {

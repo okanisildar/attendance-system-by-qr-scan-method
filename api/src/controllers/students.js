@@ -5,6 +5,7 @@ function create(req, res, next) {
 	const studentNumber = body.studentNumber;
 	const name = body.name;
 	const surname = body.surname;
+	const courses = body.courses;
 
 
 	Student.findOne({ studentNumber }, (error, student) => {
@@ -26,7 +27,8 @@ function create(req, res, next) {
 		student = new Student({
 			studentNumber,
 			name,
-			surname
+			surname,
+			courses
 		})
 
 		student.save((error, student) => {
@@ -45,6 +47,10 @@ function list(req, res) {
 		}
 		res.json({ students });
 	})
+}
+
+function destroy(req, res) {
+
 }
 
 module.exports = { create, list };

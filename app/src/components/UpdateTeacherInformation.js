@@ -1,19 +1,20 @@
 import _ from 'lodash';
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { onChangeTextHandler, updateTeacher } from '../actions';
+import { onChangeTextUpdateTeacher, updateTeacher } from '../actions';
 import { MainContainer, Input, FieldContainer, ItemContainer, Button } from './common';
 
 class UpdateTeacherInformation extends Component {
 	componentWillMount() {
-		const { user } = this.props.navigation.state.params.user;
+		const { user } = this.props.navigation.state.params;
+		console.log(user)
 		_.each(user, (value, prop) => {
-				this.props.onChangeTextHandler({ prop, value });
+				this.props.onChangeTextUpdateTeacher({ prop, value });
 		});
   }
 
 	onChangeTextHandler(value) {
-		this.props.onChangeTextHandler(value);
+		this.props.onChangeTextUpdateTeacher(value);
 	}
 
 	onButtonPressed(name, surname) {
@@ -58,4 +59,4 @@ const mapStateToProps = (state) => {
 };
 
 export default connect(mapStateToProps, 
-	{ onChangeTextHandler, updateTeacher })(UpdateTeacherInformation);
+	{ onChangeTextUpdateTeacher, updateTeacher })(UpdateTeacherInformation);

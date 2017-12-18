@@ -5,17 +5,15 @@ import { onChangeTextHandler, createStudent, getRecords } from '../actions';
 import { MainContainer, Input, FieldContainer, ItemContainer, Button } from './common';
 
 class CreateStudent extends Component {
-	componentDidMount() {
-		this.props.getRecords;
-	}
 
 	onChangeTextHandler(value) {
 		this.props.onChangeTextHandler(value);
 	}
 
 	onButtonPressed() {
-		const { studentNumber, name, surname } = this.props;
-		this.props.createStudent({ studentNumber, name, surname });
+		const { studentNumber, name, surname, courses } = this.props;
+		console.log(courses)
+		this.props.createStudent({ studentNumber, name, surname, courses });
 	}
 
 	render() {
@@ -47,6 +45,14 @@ class CreateStudent extends Component {
 							/>
 						</FieldContainer>
 						<FieldContainer>
+							<Input 
+								placeholder="Course(s)"
+								secureTextEntry
+								onChangeText={(value) => this.onChangeTextHandler({ prop: 'courses', value })}
+								label='Course(s)' 
+							/>
+						</FieldContainer>
+						<FieldContainer>
 							<Button onPress={this.onButtonPressed.bind(this)}>Create Student</Button>
 						</FieldContainer>
 					</ItemContainer>
@@ -57,9 +63,9 @@ class CreateStudent extends Component {
 }
 
 const mapStateToProps = state => {
-	const { studentNumber, name, surname, error, loading } = state.student;
+	const { studentNumber, name, surname, error, loading, courses } = state.student;
 	const { records } = state.attendance;
-	return { studentNumber, name, surname, error, loading, records }; 
+	return { studentNumber, name, surname, error, loading, records, courses }; 
 };
 
 

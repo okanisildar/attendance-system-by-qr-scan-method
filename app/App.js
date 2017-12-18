@@ -15,6 +15,7 @@ import WelcomeScreen from './src/screens/WelcomeScreen';
 import ViewAttendanceScreen from './src/screens/ViewAttendanceScreen';
 import UpdateTeacherScreen from './src/screens/UpdateTeacherScreen';
 import AttendanceDetailsScreen from './src/screens/AttendanceDetailsScreen';
+import CreateStudentScreen from './src/screens/CreateStudentScreen';
 
 export default class App extends React.Component {
 
@@ -30,6 +31,7 @@ export default class App extends React.Component {
       newAttendance: { screen: NewAttendanceScreen },
       viewAttendance: { screen: ViewAttendanceScreen },
       updateTeacherInfo: { screen: UpdateTeacherScreen },
+      createStudent: { screen: CreateStudentScreen },
       attendanceDetails: { screen: AttendanceDetailsScreen }
     });
 

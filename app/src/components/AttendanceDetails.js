@@ -1,10 +1,11 @@
 import React, { Component } from 'react';
-import { Text, TouchableWithoutFeedback, View } from 'react-native';
+import { Text, View } from 'react-native';
 
 
 class AttendanceDetails extends Component {
 	render() {
-		console.log(this.props.navigation)
+		const { record } = this.props.navigation.state.params;
+		console.log(record)
 		return (
 			<View>
 				<Text>AttendanceDetail</Text>

@@ -12,6 +12,10 @@ const studentSchema = new mongoose.Schema({
 	surname: {
 		type: String,
 		required: true
+	},
+	courses: {
+		type: String,
+		required: true
 	}
 });
 

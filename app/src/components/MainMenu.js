@@ -11,7 +11,8 @@ class MainMenu extends Component {
 
 	render() {
 		const { navigate } = this.props.navigation;
-		const { _id } = this.props.user;
+		const { user } = this.props;
+		const { _id } = user;
 		return (
 			<MainContainer>
 				<FieldContainer>
@@ -23,9 +24,12 @@ class MainMenu extends Component {
 					<Button onPress={() => navigate('viewAttendance', { teacherId: _id })}>View attendance results</Button>
 				</FieldContainer>
 				<FieldContainer>
-					{/*<Button onPress={() => navigate('updateTeacherInfo', { user })}>
+					<Button onPress={() => navigate('updateTeacherInfo', { user })}>
 						Update Teacher Information
-					</Button>*/}
+					</Button>
+				</FieldContainer>
+				<FieldContainer>
+					<Button onPress={() => navigate('createStudent')}>Create Student</Button>
 				</FieldContainer>
 			</MainContainer>
 		);
