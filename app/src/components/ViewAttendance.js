@@ -4,14 +4,13 @@ import { View, ListView } from 'react-native';
 import { connect } from 'react-redux';
 import { List, Text, Container, Content } from 'native-base';
 import { getRecords } from '../actions';
-import { Button, MainContainer, Spinner } from './common';
 import ListItem from './ListItem';
 
 
 class ViewAttendance extends Component {
 	componentWillMount() {
 		const { teacherId } = this.props.navigation.state.params;
-		this.props.getRecords({ teacherId })
+		this.props.getRecords({ teacherId });
 		this.createDataSource(this.props);
 	}
 
@@ -31,22 +30,20 @@ class ViewAttendance extends Component {
 
 	renderRow(record, navigation) {
 		return (
-				<ListItem record={record} navigation={navigation}/>
+				<ListItem record={record} navigation={navigation} />
 		);
 	}
 
 	render() {
-		const { loading, navigation } = this.props;
+		const { navigation } = this.props;
 		//const items = ['Simon Mignolet','Nathaniel Clyne','Dejan Lovren','Mama Sakho','Emre Can'];
 		return (
 			<Container>
-			{loading ? <Spinner /> :
 					<ListView
 						enableEmptySections
 						dataSource={this.dataSource}
 						renderRow={(record) => this.renderRow(record, navigation)}
 					/>
-			}
 			</Container>
 		);
 	}

@@ -78,7 +78,10 @@ class NewAttendace extends Component {
 						</Button>
 						<DateTimePicker
 							isVisible={this.state.isDateTimePickerVisible}
-							onConfirm={(value) => this.onChangeTextHandler({ prop: 'date', value })}
+							onConfirm={(value) => { 
+								this.onChangeTextHandler({ prop: 'date', value }); 
+								this.setState({ isDateTimePickerVisible: false });
+							}}
 							onCancel={this.hideDateTimePicker.bind(this)}
 						/>
 					</FieldContainer>

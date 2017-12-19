@@ -13,9 +13,7 @@ const styles = {
 		borderWidth: 1,
 		borderColor: '#ddd',
 		borderRadius: 5,
-		marginLeft: 10,
-		marginRight: 10,
-		marginTop: 25,
+		marginTop: 20,
 		marginBottom: 5
 	}
 };

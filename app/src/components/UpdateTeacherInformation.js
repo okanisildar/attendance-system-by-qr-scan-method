@@ -1,14 +1,14 @@
 import _ from 'lodash';
 import React, { Component } from 'react';
+import { Text } from 'react-native';
 import { connect } from 'react-redux';
 import { onChangeTextUpdateTeacher, updateTeacher } from '../actions';
 import { MainContainer, Input, FieldContainer, ItemContainer, Button } from './common';
 
 class UpdateTeacherInformation extends Component {
 	componentWillMount() {
-		const { user } = this.props.navigation.state.params;
-		console.log(user)
-		_.each(user, (value, prop) => {
+		const { teacher } = this.props.navigation.state.params;
+		_.each(teacher, (value, prop) => {
 				this.props.onChangeTextUpdateTeacher({ prop, value });
 		});
   }
@@ -18,13 +18,12 @@ class UpdateTeacherInformation extends Component {
 	}
 
 	onButtonPressed(name, surname) {
-		const { _id, navigation } = this.props;
-		//const { navigate } = this.props.navigation;
+		const { _id } = this.props;
 		this.props.updateTeacher({ _id, name, surname });
 	}
 
 	render() {
-		const { name, surname } = this.props;
+		const { name, surname, isSuccessful } = this.props;
 		return (
 			<MainContainer>
 				<ItemContainer>
@@ -47,15 +46,30 @@ class UpdateTeacherInformation extends Component {
 					<FieldContainer>
 						<Button onPress={this.onButtonPressed.bind(this, name, surname)}>Update</Button>
 					</FieldContainer>
+					{isSuccessful && 
+						<FieldContainer>
+							<Text style={styles.successfulTextStyle}>
+								Successfully updated
+							</Text>
+						</FieldContainer>
+					}
 				</ItemContainer>
 			</MainContainer>
 		);
 	}
 }
 
+const styles = {
+	successfulTextStyle: {
+		color: 'green',
+		alignSelf: 'center',
+		fontSize: 20
+	}
+};
+
 const mapStateToProps = (state) => {
-	const { _id, name, surname } = state.update;
-	return { _id, name, surname };
+	const { _id, name, surname, isSuccessful } = state.update;
+	return { _id, name, surname, isSuccessful };
 };
 
 export default connect(mapStateToProps, 

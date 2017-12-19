@@ -67,4 +67,4 @@ function destroy(req, res) {
 	})
 }
 
-module.exports = { create, list };
+module.exports = { create, list, destroy };

@@ -11,20 +11,19 @@ class MainMenu extends Component {
 
 	render() {
 		const { navigate } = this.props.navigation;
-		const { user } = this.props;
-		const { _id } = user;
+		const { teacher } = this.props;
 		return (
 			<MainContainer>
 				<FieldContainer>
-					<Button onPress={() => navigate('newAttendance', { teacherId: _id })}>
+					<Button onPress={() => navigate('newAttendance', { teacherId: teacher._id })}>
 						Create new attendance record
 					</Button>
 				</FieldContainer>
 				<FieldContainer>
-					<Button onPress={() => navigate('viewAttendance', { teacherId: _id })}>View attendance results</Button>
+					<Button onPress={() => navigate('viewAttendance', { teacherId: teacher._id })}>View attendance results</Button>
 				</FieldContainer>
 				<FieldContainer>
-					<Button onPress={() => navigate('updateTeacherInfo', { user })}>
+					<Button onPress={() => navigate('updateTeacherInfo', { teacher })}>
 						Update Teacher Information
 					</Button>
 				</FieldContainer>
@@ -37,8 +36,8 @@ class MainMenu extends Component {
 }
 
 const mapStateToProps = (state) => {
-	const { user } = state.auth;
-	return { user };
+	const { teacher } = state.auth;
+	return { teacher };
 };
 
 export default connect(mapStateToProps, { getUser })(MainMenu);
