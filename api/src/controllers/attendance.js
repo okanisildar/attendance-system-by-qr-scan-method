@@ -11,7 +11,7 @@ function create(req, res) {
 
 	attendance.save((error, attendance) => {
 		if(error) {
-			return res.status(500).json("There is an error");
+			return res.status(500).json('There is an error');
 		}
 		res.json({ result: 'success' });
 	});
@@ -22,7 +22,7 @@ function getAttendanceRecordsByTeacher(req, res) {
 	const teacherId = body.teacherId;
 	Attendance.find({'teacherId' :teacherId }, (error, records) => {
 		if(error) {
-			return res.status(500).json("There is an error", error);
+			return res.status(500).json('There is an error', error);
 		}
 		res.json({ records })
 	})
@@ -31,11 +31,28 @@ function getAttendanceRecordsByTeacher(req, res) {
 function list (req, res) {
 	Attendance.find({}, (error, attendances) => {
 		if(error) {
-			return res.status(500).json("There is an error");
+			return res.status(500).json('There is an error');
 		}
 		res.json({ attendances });
 	});
 }
 
+function destroy(req, res) {
+	Attendance.findById(req.params.id, (error, attendance) => {
+		if(error) {
+			return res.status(500).json('There is an error');
+		}
+		if(!attendance) {
+			return res.status(404).json('Attendance could not found');
+		}
 
-module.exports = { create, list, getAttendanceRecordsByTeacher };
+		attendance.remove( (error, attendance) => {
+			if(error) {
+				return res.status(500).json('Attendance could not deleted');
+			}
+			res.json({ success: true });
+		})
+	})
+}
+
+module.exports = { create, list, getAttendanceRecordsByTeacher, destroy };

@@ -50,7 +50,21 @@ function list(req, res) {
 }
 
 function destroy(req, res) {
+	Student.findById(req.params.id, (error, student) => {
+		if(error) {
+			return res.status(500).json('There is an error');
+		}
+		if(!student) {
+			return res.status(404).json('Student could not found');
+		}
 
+		student.remove( (error, student) => {
+			if(error) {
+				res.status(500).json('Student could not deleted');
+			}
+			res.json({ success: true })
+		})
+	})
 }
 
 module.exports = { create, list };
