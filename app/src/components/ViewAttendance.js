@@ -25,6 +25,7 @@ class ViewAttendance extends Component {
 		const items = _.map(records, (val, key) => {
 				return { ...val, key };
 			});
+		console.log(typeof items)
     this.dataSource = ds.cloneWithRows(items);
 	}
 
