@@ -37,7 +37,6 @@ class ViewAttendance extends Component {
 
 	render() {
 		const { navigation } = this.props;
-		//const items = ['Simon Mignolet','Nathaniel Clyne','Dejan Lovren','Mama Sakho','Emre Can'];
 		return (
 			<Container>
 					<ListView

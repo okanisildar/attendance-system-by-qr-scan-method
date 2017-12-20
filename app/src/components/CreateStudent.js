@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { View } from 'react-native';
+import { View, Text } from 'react-native';
 import { onChangeTextHandler, createStudent, getRecords } from '../actions';
-import { MainContainer, Input, FieldContainer, ItemContainer, Button } from './common';
+import { MainContainer, Input, FieldContainer, ItemContainer, Button, Spinner } from './common';
 
 class CreateStudent extends Component {
 
@@ -12,11 +12,11 @@ class CreateStudent extends Component {
 
 	onButtonPressed() {
 		const { studentNumber, name, surname, courses } = this.props;
-		console.log(courses)
 		this.props.createStudent({ studentNumber, name, surname, courses });
 	}
 
 	render() {
+		const { loading, error, isSuccessful } = this.props;
 		return (
 			<View style={{ flex: 1 }}>
 				<MainContainer>
@@ -39,7 +39,6 @@ class CreateStudent extends Component {
 						<FieldContainer>
 							<Input 
 								placeholder="Surname"
-								secureTextEntry
 								onChangeText={(value) => this.onChangeTextHandler({ prop: 'surname', value })}
 								label='Surname' 
 							/>
@@ -47,14 +46,23 @@ class CreateStudent extends Component {
 						<FieldContainer>
 							<Input 
 								placeholder="Course(s)"
-								secureTextEntry
 								onChangeText={(value) => this.onChangeTextHandler({ prop: 'courses', value })}
 								label='Course(s)' 
 							/>
 						</FieldContainer>
 						<FieldContainer>
+						{loading ? <Spinner /> :
 							<Button onPress={this.onButtonPressed.bind(this)}>Create Student</Button>
+						}
 						</FieldContainer>
+						{isSuccessful &&
+							<Text style={styles.successfulTextStyle}>
+								Successfully saved, next student
+							</Text>
+						}
+						<Text style={styles.warningTextStyle}>
+							{error}
+						</Text>
 					</ItemContainer>
 				</MainContainer>
 			</View>
@@ -62,10 +70,23 @@ class CreateStudent extends Component {
 	}
 }
 
+const styles = {
+	successfulTextStyle: {
+		color: 'green',
+		alignSelf: 'center',
+		fontSize: 20
+	},
+	warningTextStyle: {
+		color: 'red',
+		alignSelf: 'center',
+		fontSize: 20
+	}
+};
+
 const mapStateToProps = state => {
-	const { studentNumber, name, surname, error, loading, courses } = state.student;
+	const { studentNumber, name, surname, courses, error, loading, isSuccessful } = state.student;
 	const { records } = state.attendance;
-	return { studentNumber, name, surname, error, loading, records, courses }; 
+	return { studentNumber, name, surname, error, loading, records, courses, isSuccessful }; 
 };
 
 

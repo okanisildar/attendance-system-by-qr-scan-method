@@ -5,7 +5,8 @@ const INITIAL_STATE = {
 	name: '',
 	surname: '',
 	loading: null,
-	error: ''
+	error: '',
+	isSuccessful: null 
 };
 
 export default (state = INITIAL_STATE, action) => {
@@ -13,7 +14,7 @@ export default (state = INITIAL_STATE, action) => {
 		case ON_CHANGE_TEXT:
 			return { ...state, [action.payload.prop]: action.payload.value };
 		case CREATE_STUDENT_SUCCESS:
-			return { ...state, loading: false };
+			return { ...state, loading: false, isSuccessful: true };
 		case CREATE_STUDENT_FAIL:
 			return { ...state, error: 'Student could not created', loading: false };
 		default:

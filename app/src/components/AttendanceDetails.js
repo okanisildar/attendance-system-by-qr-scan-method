@@ -38,7 +38,8 @@ class AttendanceDetails extends Component {
                 </Text>
               </Body>
               <Right>
-              	<Icon name="checkmark-circle" style={{ color: 'green' }} />
+              	<Icon name="ios-checkmark-circle" style={{ color: 'green' }} />
+                <Icon name="ios-close-circle" style={{ color: 'red' }} />
               </Right>
             </FieldContainer>
           </ItemContainer>
