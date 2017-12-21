@@ -49,6 +49,17 @@ function list(req, res) {
 	})
 }
 
+function listByCourse(req, res) {
+	const body = req.body;
+	const courseName = body.courseName;
+	Student.find({ courseName: courseName }, (error, students) => {
+		if(error) {
+			return res.status(500).json('There is an error', error);
+		}
+		res.json({ students });
+	})
+}
+
 function destroy(req, res) {
 	Student.findById(req.params.id, (error, student) => {
 		if(error) {
