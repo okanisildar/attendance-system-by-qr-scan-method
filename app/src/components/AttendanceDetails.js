@@ -1,3 +1,4 @@
+import _ from 'lodash';
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { Text, TouchableWithoutFeedback, View, ListView } from 'react-native';
@@ -24,13 +25,20 @@ class AttendanceDetails extends Component {
     });
     const items = _.map(allStudents, (val, key) => {
         return { ...val, key };
-      });
-
+    });
     this.dataSource = ds.cloneWithRows(items);
   }
 
 	renderRow(student) {
-    console.log(student)
+    const { students } = this.props.navigation.state.params.record;
+    const { studentNumber, name, surname } = student;
+    let isAbsent;
+    console.log(studentNumber)
+    if (students.includes(studentNumber)) {
+      isAbsent = false;
+    }else {
+      isAbsent = true;
+    }
 		return (
 			<TouchableWithoutFeedback>
         <View>
@@ -38,12 +46,15 @@ class AttendanceDetails extends Component {
             <FieldContainer>
               <Body>
                 <Text>
-                asd 
+                  {`${studentNumber}  ${name} ${surname}`}
                 </Text>
               </Body>
               <Right>
-              	<Icon name="ios-checkmark-circle" style={{ color: 'green' }} />
-                <Icon name="ios-close-circle" style={{ color: 'red' }} />
+                {!isAbsent ?
+                  <Icon name="ios-checkmark-circle" style={{ color: 'green' }} />
+                  :
+                  <Icon name="ios-close-circle" style={{ color: 'red' }} />
+                }
               </Right>
             </FieldContainer>
           </ItemContainer>
@@ -53,10 +64,11 @@ class AttendanceDetails extends Component {
 	}
 
 	render() {
-   console.log(this.props)
+   //console.log(this.props)
 		return (
 			<Container style={{ marginLeft: -10 }}>
         <ListView 
+          enableEmptySections
           dataSource={this.dataSource}
           renderRow={student => this.renderRow(student)} 
         />
