@@ -4,7 +4,7 @@ const studentController = require('../controllers/students');
 
 students.post('/', studentController.create);
 students.get('/', studentController.list);
-students.get('/getStudent', studentController.listByCourse);
+students.get('/getStudents', studentController.listByCourse);
 students.delete('/:id', studentController.destroy);
 
 

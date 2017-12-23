@@ -19,8 +19,7 @@ export const getAttendanceInfo = ({ prop, value }) => {
 export const saveAttendanceRecord = ({ courseName, date, hours, students, teacherId }) => {
 	return dispatch => {
 		dispatch({ type: SEND_REQUEST });
-		console.log(students)
-		/*return axios.post(`${URL}/attendance`, { courseName, date, hours, students, teacherId })
+		return axios.post(`${URL}/attendance`, { courseName, date, hours, students, teacherId })
 			.then(result => {
 				dispatch({
 					type: SAVE_ATTENDANCE_SUCCESS,
@@ -31,7 +30,7 @@ export const saveAttendanceRecord = ({ courseName, date, hours, students, teache
 				dispatch({
 					type: SAVE_ATTENDANCE_FAIL
 				});
-			});*/
+			});
 	};
 };
 

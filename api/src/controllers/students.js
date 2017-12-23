@@ -56,6 +56,7 @@ function listByCourse(req, res) {
 		if(error) {
 			return res.status(500).json('There is an error', error);
 		}
+		console.log(students)
 		res.json({ students });
 	})
 }

@@ -1,13 +1,15 @@
-import _ from 'lodash';
 import React, { Component } from 'react';
+import { connect } from 'react-redux';
 import { Text, TouchableWithoutFeedback, View, ListView } from 'react-native';
 import { Container, Content, ListItem, Left, Body, Right, Icon, List } from 'native-base';
+import { listStudentsByCourse } from '../actions';
 import { FieldContainer, ItemContainer } from './common';
 
 
 class AttendanceDetails extends Component {
   componentWillMount() {
-    const { students } = this.props.navigation.state.params.record;
+    const { courseName } = this.props.navigation.state.params.record;
+    this.props.listStudentsByCourse({ courseName })
     this.createDataSource(this.props);
   }
 
@@ -15,14 +17,16 @@ class AttendanceDetails extends Component {
     this.createDataSource(nextProps);
   }
 
-  createDataSource({ navigation }) { 
-    const { students } = navigation.state.params.record;
-
+  createDataSource({ allStudents }) { 
+    //const { students } = navigation.state.params.record;
     const ds = new ListView.DataSource({
       rowHasChanged: (r1, r2) => r1 !== r2
     });
+    const items = _.map(allStudents, (val, key) => {
+        return { ...val, key };
+      });
 
-    this.dataSource = ds.cloneWithRows(students);
+    this.dataSource = ds.cloneWithRows(items);
   }
 
 	renderRow(student) {
@@ -34,7 +38,7 @@ class AttendanceDetails extends Component {
             <FieldContainer>
               <Body>
                 <Text>
-                 {student}  
+                asd 
                 </Text>
               </Body>
               <Right>
@@ -49,6 +53,7 @@ class AttendanceDetails extends Component {
 	}
 
 	render() {
+   console.log(this.props)
 		return (
 			<Container style={{ marginLeft: -10 }}>
         <ListView 
@@ -60,7 +65,12 @@ class AttendanceDetails extends Component {
 	}
 }
 
-export default AttendanceDetails;
+const mapStateToProps = state => {
+  const { allStudents, getError } = state.student;
+  return { allStudents, getError };
+};
+
+export default connect(mapStateToProps, { listStudentsByCourse })(AttendanceDetails);
 /*
   <List 
             dataArray={}
