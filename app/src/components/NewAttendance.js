@@ -2,9 +2,10 @@ import React, { Component } from 'react';
 import { Text } from 'react-native';
 import { connect } from 'react-redux';
 import { BarCodeScanner, Permissions } from 'expo';
+import { Container, Item, Input, Icon, Button, Spinner } from 'native-base';
 import DateTimePicker from 'react-native-modal-datetime-picker';
 import { getAttendanceInfo, saveAttendanceRecord } from '../actions';
-import { MainContainer, Input, FieldContainer, ItemContainer, Button, Spinner } from './common';
+import { MainContainer, FieldContainer, ItemContainer } from './common';
 
 
 class NewAttendace extends Component {
@@ -62,19 +63,18 @@ class NewAttendace extends Component {
 		const { isRepeating } = this.state;
 		const { courseName, hours, isSuccessful, result, loading } = this.props;
 		return (
-			<MainContainer>
-				<ItemContainer>
-					<FieldContainer>
+			<Container style={styles.contentStyle}>
+				<Item rounded style={styles.itemStyle}>
 						<Input 
 							placeholder="Course Name"
 							label="Course Name" 
 							onChangeText={(value) => this.onChangeTextHandler({ prop: 'courseName', value })}
 							value={courseName}
 						/>
-					</FieldContainer>
-					<FieldContainer>
-						<Button onPress={this.showDateTimePicker.bind(this)}>
-							Choose Date
+				</Item>
+				
+						<Button full rounded onPress={this.showDateTimePicker.bind(this)}>
+							<Text>Choose Date</Text>
 						</Button>
 						<DateTimePicker
 							isVisible={this.state.isDateTimePickerVisible}
@@ -84,8 +84,8 @@ class NewAttendace extends Component {
 							}}
 							onCancel={this.hideDateTimePicker.bind(this)}
 						/>
-					</FieldContainer>
-					<FieldContainer>
+
+				<Item rounded style={styles.itemStyle}>
 						<Input
 							placeholder="Hour(s)" 
 							label="Hour(s)"
@@ -93,7 +93,7 @@ class NewAttendace extends Component {
 							onChangeText={(value) => this.onChangeTextHandler({ prop: 'hours', value })}
 							value={hours}
 						/>
-					</FieldContainer>
+				</Item>
 					{isSuccessful && !isRepeating &&
 						<Text style={styles.successfulTextStyle}>
 							Successfully saved, next student
@@ -104,22 +104,25 @@ class NewAttendace extends Component {
 							Duplicated student
 						</Text>
 					}
-					<FieldContainer>
-						<Button onPress={this.onPressButton.bind(this)}>Open Scanning</Button>
-					</FieldContainer>
-					<FieldContainer>
-					{loading ?
-						<Spinner /> :
-						<Button onPress={this.saveAttendanceRecord.bind(this)}>Save Attendance Record</Button>
+				<Item rounded style={styles.itemStyle}>
+					<Button onPress={this.onPressButton.bind(this)}>
+						<Text>Open Scanning</Text>
+					</Button>
+				</Item>
+				<Item rounded style={styles.itemStyle}>
+				{loading ?
+					<Spinner /> :
+					<Button onPress={this.saveAttendanceRecord.bind(this)}>
+						<Text>Save Attendance Record</Text>
+					</Button>
 					}
-					</FieldContainer>
+				</Item>
 					{result && 
 						<Text style={styles.successfulTextStyle}>
 							Successfully saved
 						</Text>
 					}
-				</ItemContainer>
-			</MainContainer>
+			</Container>
 		);
 	}
 
@@ -151,10 +154,18 @@ class NewAttendace extends Component {
 }
 
 const styles = {
+	contentStyle: {
+		paddingTop: 20,
+		backgroundColor: '#c0deed'
+	},
 	successfulTextStyle: {
 		color: 'green',
 		alignSelf: 'center',
 		fontSize: 20
+	},
+	itemStyle: {
+		borderColor: 'white',
+		margin: 10
 	}
 };
 

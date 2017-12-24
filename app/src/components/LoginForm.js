@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { View, Text } from 'react-native';
 import { connect } from 'react-redux';
-import { Container, Item, Input, Icon, Button, Spinner } from 'native-base';
+import { Container, Item, Input, Icon, Button, Spinner, Label } from 'native-base';
 import { onChangeTextHandler, login } from '../actions';
 
 class LoginForm extends Component {
@@ -24,8 +24,9 @@ class LoginForm extends Component {
 		const { loading, error } = this.props; 
     return (
 			<Container style={styles.contentStyle}>
-				<Item rounded style={styles.itemStyle}>
+				<Item inlineLabel rounded style={styles.itemStyle}>
 					<Icon active name='mail' />
+					<Label>Email</Label>
 					<Input
 					autoCorrect={false}
 					placeholder="Email" 
@@ -34,8 +35,9 @@ class LoginForm extends Component {
 					label='Email'
 					/>
 				</Item>
-				<Item rounded style={styles.itemStyle}>
+				<Item inlineLabel rounded style={styles.itemStyle}>
 					<Icon active name='lock' />
+					<Label>Email</Label>
 					<Input 
 						placeholder="Password"
 						secureTextEntry
@@ -48,7 +50,7 @@ class LoginForm extends Component {
 					</Text>
 				{loading ? 
 					<Spinner /> :
-					<Button full rounded dark onPress={this.onButtonPress.bind(this)}>
+					<Button full rounded onPress={this.onButtonPress.bind(this)}>
 						<Text style={{ color: '#fff' }}>Login</Text>
 					</Button>
 				}

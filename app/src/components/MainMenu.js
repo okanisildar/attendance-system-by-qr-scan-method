@@ -16,17 +16,17 @@ class MainMenu extends Component {
 		return (
 			<Container style={styles.contentStyle}>
 				
-					<Button full rounded dark onPress={() => navigate('newAttendance', { teacherId: teacher._id })}>
+					<Button  full onPress={() => navigate('newAttendance', { teacherId: teacher._id })}>
 						<Text>Create new attendance record</Text>
 					</Button>
 				
 			
-					<Button full rounded dark onPress={() => navigate('viewAttendance', { teacherId: teacher._id })}>
+					<Button style={styles.buttonStyle} full rounded primary onPress={() => navigate('viewAttendance', { teacherId: teacher._id })}>
 						<Text>View attendance results</Text>
 					</Button>
 				
 				
-					<Button full rounded dark onPress={() => navigate('updateTeacherInfo', { teacher })}>
+					<Button full rounded  onPress={() => navigate('updateTeacherInfo', { teacher })}>
 						<Text>Update Teacher Information</Text>
 					</Button>
 	
@@ -58,6 +58,11 @@ const styles = {
 	itemStyle: {
 		borderColor: 'white',
 		marginBottom: 10
+	},
+	buttonStyle: {
+		marginLeft: 20,
+		marginRight: 20,
+		backgroundColor: '#00aced'
 	}
 };
 

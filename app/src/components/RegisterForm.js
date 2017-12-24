@@ -30,7 +30,7 @@ class RegisterForm extends Component {
 					/>
 				</Item>
 				<Item rounded style={styles.itemStyle}>
-					<Icon active name='mail' />
+					<Icon active name='contact' />
 					<Input
 						placeholder="Name" 
 						onChangeText={(value) => this.onChangeTextHandler({ prop: 'name', value })}
@@ -38,7 +38,7 @@ class RegisterForm extends Component {
 					/>
 				</Item>
 				<Item rounded style={styles.itemStyle}>
-					<Icon active name='mail' />
+					<Icon active name='contact' />
 					<Input
 						placeholder="Surname" 
 						onChangeText={(value) => this.onChangeTextHandler({ prop: 'surname', value })}
@@ -46,7 +46,7 @@ class RegisterForm extends Component {
 					/>
 				</Item>
 				<Item rounded style={styles.itemStyle}>
-					<Icon active name='mail' />
+					<Icon active name='lock' />
 					<Input 
 						placeholder="Password"
 						secureTextEntry
