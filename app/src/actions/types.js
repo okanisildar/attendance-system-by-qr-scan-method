@@ -1,5 +1,5 @@
 //general 
-export const URL = 'http://192.168.1.2:3000';
+export const URL = 'http://192.168.1.4:3000';
 export const ON_CHANGE_TEXT = 'on_change_text';
 export const SAVE_ATTENDANCE_INFO = 'save_attendance_info';
 export const GET_USER = 'get_user';
@@ -28,5 +28,5 @@ export const GET_RECORDS_FAIL = 'get_records_fail';
 export const CREATE_STUDENT_SUCCESS = 'create_student_success';
 export const CREATE_STUDENT_FAIL = 'create_student_fail';
 export const GET_STUDENTS_SUCCESS = 'get_students_success';
-export const GET_STUDENTS_FAIL = 'get_studens_fail'
+export const GET_STUDENTS_FAIL = 'get_studens_fail';
 

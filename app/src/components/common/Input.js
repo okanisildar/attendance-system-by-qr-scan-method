@@ -11,6 +11,7 @@ const Input = (props) => {
 			<TextInput
 				keyboardType={props.keyboardType}
 				autoCorrect={false}
+				icon={props.icon}
 				placeholder={props.placeholder} 
 				secureTextEntry={secureTextEntry}
 				onChangeText={onChangeText}

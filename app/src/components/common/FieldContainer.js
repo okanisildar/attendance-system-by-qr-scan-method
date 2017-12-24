@@ -12,7 +12,7 @@ const styles = {
 		borderBottomWidth: 1,
 		padding: 5,
 		flexDirection: 'row',
-		borderColor: '#ddd',
+		borderColor: 'white',
 		position: 'relative'
 	}
 };

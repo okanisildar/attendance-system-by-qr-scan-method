@@ -1,9 +1,8 @@
 import React, { Component } from 'react';
 import { View, Text } from 'react-native';
 import { connect } from 'react-redux';
+import { Container, Item, Input, Icon, Button, Spinner } from 'native-base';
 import { onChangeTextHandler, login } from '../actions';
-import { MainContainer, Input, FieldContainer, ItemContainer, Button, Spinner } from './common';
-
 
 class LoginForm extends Component {
 	static navigationOptions = {
@@ -24,45 +23,56 @@ class LoginForm extends Component {
   render() {
 		const { loading, error } = this.props; 
     return (
-			<View style={{ flex: 1 }}>
-				<MainContainer>
-					<ItemContainer>
-						<FieldContainer>
-							<Input
-								placeholder="Email" 
-								onChangeText={(value) => this.onChangeTextHandler({ prop: 'email', value })}
-								label='Email'
-							/>
-						</FieldContainer>
-						<FieldContainer>
-							<Input 
-								placeholder="Password"
-								secureTextEntry
-								onChangeText={(value) => this.onChangeTextHandler({ prop: 'password', value })}
-								label='Password' 
-							/>
-						</FieldContainer>
-							<Text style={styles.errorTextStyle}>
-								{error}
-							</Text>
-						<FieldContainer>
-						{loading ? 
-							<Spinner /> :
-							<Button onPress={this.onButtonPress.bind(this)}>Login</Button>
-						}
-						</FieldContainer>
-					</ItemContainer>
-				</MainContainer>
-			</View>
+			<Container style={styles.contentStyle}>
+				<Item rounded style={styles.itemStyle}>
+					<Icon active name='mail' />
+					<Input
+					autoCorrect={false}
+					placeholder="Email" 
+					icon={<Icon name="user" />}
+					onChangeText={(value) => this.onChangeTextHandler({ prop: 'email', value })}
+					label='Email'
+					/>
+				</Item>
+				<Item rounded style={styles.itemStyle}>
+					<Icon active name='lock' />
+					<Input 
+						placeholder="Password"
+						secureTextEntry
+						onChangeText={(value) => this.onChangeTextHandler({ prop: 'password', value })}
+						label='Password' 
+					/>
+				</Item>
+					<Text style={styles.errorTextStyle}>
+						{error}
+					</Text>
+				{loading ? 
+					<Spinner /> :
+					<Button full rounded dark onPress={this.onButtonPress.bind(this)}>
+						<Text style={{ color: '#fff' }}>Login</Text>
+					</Button>
+				}
+			</Container>
     );
   }
 }
 
 const styles = {
+	contentStyle: {
+		flex: 1,
+    flexDirection: 'column',
+    alignItems: 'center',
+    justifyContent: 'center',
+		backgroundColor: '#c0deed'
+	},
 	errorTextStyle: {
 		fontSize: 20,
 		alignSelf: 'center',
 		color: 'red'
+	},
+	itemStyle: {
+		borderColor: 'white',
+		marginBottom: 10
 	}
 };
 

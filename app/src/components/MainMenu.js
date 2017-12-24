@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { MainContainer, FieldContainer, Button } from './common';
+import { Container, Item, Input, Icon, Button, Spinner, Text } from 'native-base';
+import { MainContainer, FieldContainer } from './common';
 import { getUser } from '../actions';
 
 class MainMenu extends Component {
@@ -13,27 +14,52 @@ class MainMenu extends Component {
 		const { navigate } = this.props.navigation;
 		const { teacher } = this.props;
 		return (
-			<MainContainer>
-				<FieldContainer>
-					<Button onPress={() => navigate('newAttendance', { teacherId: teacher._id })}>
-						Create new attendance record
+			<Container style={styles.contentStyle}>
+				
+					<Button full rounded dark onPress={() => navigate('newAttendance', { teacherId: teacher._id })}>
+						<Text>Create new attendance record</Text>
 					</Button>
-				</FieldContainer>
-				<FieldContainer>
-					<Button onPress={() => navigate('viewAttendance', { teacherId: teacher._id })}>View attendance results</Button>
-				</FieldContainer>
-				<FieldContainer>
-					<Button onPress={() => navigate('updateTeacherInfo', { teacher })}>
-						Update Teacher Information
+				
+			
+					<Button full rounded dark onPress={() => navigate('viewAttendance', { teacherId: teacher._id })}>
+						<Text>View attendance results</Text>
 					</Button>
-				</FieldContainer>
-				<FieldContainer>
-					<Button onPress={() => navigate('createStudent')}>Create Student</Button>
-				</FieldContainer>
-			</MainContainer>
+				
+				
+					<Button full rounded dark onPress={() => navigate('updateTeacherInfo', { teacher })}>
+						<Text>Update Teacher Information</Text>
+					</Button>
+	
+
+					<Button full rounded dark onPress={() => navigate('createStudent')}>
+					<Text>Create Student</Text>
+					</Button>
+	
+			</Container>
 		);
 	}
 }
+
+const styles = {
+	contentStyle: {
+		flex: 1,
+    flexDirection: 'column',
+    alignItems: 'center',
+    justifyContent: 'space-between',
+		backgroundColor: '#c0deed',
+		paddingTop: 100,
+		paddingBottom: 100
+	},
+	errorTextStyle: {
+		fontSize: 20,
+		alignSelf: 'center',
+		color: 'red'
+	},
+	itemStyle: {
+		borderColor: 'white',
+		marginBottom: 10
+	}
+};
 
 const mapStateToProps = (state) => {
 	const { teacher } = state.auth;
