@@ -1,8 +1,7 @@
 import React, { Component } from 'react';
-import { Text, TouchableWithoutFeedback, View } from 'react-native';
-import { Icon } from 'native-base';
+import { Text, TouchableWithoutFeedback } from 'react-native';
+import { Icon, Container } from 'native-base';
 import moment from 'moment';
-import { FieldContainer, ItemContainer } from './common';
 
 class ListItem extends Component {
   onRowPress() {
@@ -15,32 +14,37 @@ class ListItem extends Component {
     const { courseName, date } = this.props.record;
     return (
       <TouchableWithoutFeedback onPress={this.onRowPress.bind(this)}>
-        <View>
-          <ItemContainer>
-            <FieldContainer>
-              <Text style={styles.titleStyle}>
-                <Text style={styles.labelStyle}>Course: </Text>{courseName}  
-              </Text>
-              <Text style={styles.titleStyle}>
-                <Text style={styles.labelStyle}>   Date: </Text>{moment(date).format('DD/MM/YYYY')}
-              </Text>
-              <Icon name='ios-arrow-forward' style={{ color: 'grey', marginLeft: 5 }} />
-            </FieldContainer>
-          </ItemContainer>
-        </View>
+        <Container style={styles.containerStyle}>
+          <Text style={styles.labelStyle}>Course:</Text>
+          <Text style={styles.titleStyle}>{courseName}</Text> 
+          <Text style={styles.labelStyle}>Date:</Text>
+          <Text style={styles.titleStyle}>
+            {moment(date).format('DD/MM/YYYY')}
+          </Text>
+          <Icon name='ios-arrow-forward' style={{ color: 'grey', marginLeft: 5 }} />
+        </Container>
       </TouchableWithoutFeedback>
     );
   }
 }
 
 const styles = {
+  containerStyle: {
+    backgroundColor: '#c0deed',
+    flexDirection: 'row', 
+    height: 30,
+    borderBottomWidth: 1,
+    borderColor: '#fff' 
+  },
   titleStyle: {
     fontSize: 18,
-    color: '#4b658e'
+    color: '#4b658e',
+    flex: 3
   },
   labelStyle: {
     fontSize: 18,
-    color: 'black'
+    color: 'black',
+    flex: 2
   }
 };
 

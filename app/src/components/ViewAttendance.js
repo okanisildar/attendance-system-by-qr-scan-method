@@ -1,8 +1,8 @@
 import _ from 'lodash';
 import React, { Component } from 'react';
-import { View, ListView } from 'react-native';
+import { ListView } from 'react-native';
 import { connect } from 'react-redux';
-import { List, Text, Container, Content } from 'native-base';
+import { Container } from 'native-base';
 import { getRecords } from '../actions';
 import ListItem from './ListItem';
 
@@ -25,7 +25,6 @@ class ViewAttendance extends Component {
 		const items = _.map(records, (val, key) => {
 				return { ...val, key };
 			});
-		console.log(typeof items)
     this.dataSource = ds.cloneWithRows(items);
 	}
 
@@ -38,7 +37,7 @@ class ViewAttendance extends Component {
 	render() {
 		const { navigation } = this.props;
 		return (
-			<Container>
+			<Container style={styles.containerStyle}>
 					<ListView
 						enableEmptySections
 						dataSource={this.dataSource}
@@ -49,10 +48,18 @@ class ViewAttendance extends Component {
 	}
 }
 
+const styles = {
+	containerStyle: {
+		flex: 1,
+    backgroundColor: '#c0deed'
+  }
+};
+
 const mapStateToProps = (state) => {
 	const { records, loading } = state.attendance;
 	return { records, loading };
 };
+
 
 
 export default connect(mapStateToProps, { getRecords })(ViewAttendance);

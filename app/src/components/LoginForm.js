@@ -16,7 +16,6 @@ class LoginForm extends Component {
 	onButtonPress() {
 		const { email, password } = this.props;
 		const { navigate } = this.props.navigation;
-		//navigate('mainMenu')
 		this.props.login({ email, password, navigate });
 	}
 

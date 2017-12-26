@@ -3,7 +3,6 @@ import { View, Text } from 'react-native';
 import { connect } from 'react-redux';
 import { Container, Item, Input, Icon, Button, Spinner, Label } from 'native-base';
 import { onChangeTextHandler, signUp } from '../actions';
-import { MainContainer, FieldContainer, ItemContainer } from './common';
 
 class RegisterForm extends Component {
 	state = {
@@ -15,7 +14,6 @@ class RegisterForm extends Component {
 
 	onButtonPress() {
 		const { email, password, name, surname } = this.props;
-		const { navigate } = this.props.navigation;
 		if (email && password && name && surname) {
 			this.setState({ validation: true });
 			this.props.signUp({ email, password, name, surname });
@@ -27,7 +25,6 @@ class RegisterForm extends Component {
   render() {
   	const { validation } = this.state;
   	const { email, name, surname, password, loading, signUpError, signUpSuccess, result } = this.props;
-  	console.log()
     return (
 			<Container style={styles.contentStyle}>
 				<Item inlineLabel style={styles.itemStyle}>

@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { Container, Item, Input, Icon, Button, Spinner, Text } from 'native-base';
-import { MainContainer, FieldContainer } from './common';
 import { getUser } from '../actions';
 
 class MainMenu extends Component {
@@ -15,26 +14,33 @@ class MainMenu extends Component {
 		const { teacher } = this.props;
 		return (
 			<Container style={styles.contentStyle}>
-				
-					<Button  full onPress={() => navigate('newAttendance', { teacherId: teacher._id })}>
-						<Text>Create new attendance record</Text>
-					</Button>
-				
-			
-					<Button style={styles.buttonStyle} full rounded primary onPress={() => navigate('viewAttendance', { teacherId: teacher._id })}>
-						<Text>View attendance results</Text>
-					</Button>
-				
-				
-					<Button full rounded  onPress={() => navigate('updateTeacherInfo', { teacher })}>
-						<Text>Update Teacher Information</Text>
-					</Button>
-	
+				<Button 
+					style={styles.buttonStyle} full 
+					onPress={() => navigate('newAttendance', { teacherId: teacher._id })} 
+				>
+					<Text>Create new attendance record</Text>
+				</Button>
 
-					<Button full rounded dark onPress={() => navigate('createStudent')}>
+				<Button 
+					style={styles.buttonStyle} full 
+					onPress={() => navigate('viewAttendance', { teacherId: teacher._id })} 
+				>
+					<Text>View attendance results</Text>
+				</Button>
+
+				<Button 
+					style={styles.buttonStyle} full 
+					onPress={() => navigate('updateTeacherInfo', { teacher })} 
+				>
+					<Text>Update Teacher Information</Text>
+				</Button>
+
+				<Button 
+					style={styles.buttonStyle} full 
+					onPress={() => navigate('createStudent')}
+				>
 					<Text>Create Student</Text>
-					</Button>
-	
+				</Button>
 			</Container>
 		);
 	}
@@ -47,7 +53,7 @@ const styles = {
     alignItems: 'center',
     justifyContent: 'space-between',
 		backgroundColor: '#c0deed',
-		paddingTop: 100,
+		paddingTop: 80,
 		paddingBottom: 100
 	},
 	errorTextStyle: {
@@ -55,14 +61,11 @@ const styles = {
 		alignSelf: 'center',
 		color: 'red'
 	},
-	itemStyle: {
-		borderColor: 'white',
-		marginBottom: 10
-	},
 	buttonStyle: {
-		marginLeft: 20,
-		marginRight: 20,
-		backgroundColor: '#00aced'
+		borderRadius: 15,
+		backgroundColor: '#00aced',
+		marginLeft: 10,
+		marginRight: 10
 	}
 };
 
