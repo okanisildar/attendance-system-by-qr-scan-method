@@ -17,7 +17,7 @@ export const onChangeTextHandler = ({ prop, value }) => {
 	};
 };
 
-export const signUp = ({ email, password, name, surname, navigate }) => {
+export const signUp = ({ email, password, name, surname }) => {
 	return dispatch => {
 		dispatch({ type: LOGIN_USER });
 		return axios.post(`${URL}/users`, { email, password, name, surname })
@@ -26,7 +26,6 @@ export const signUp = ({ email, password, name, surname, navigate }) => {
 					type: SIGNUP_SUCCESS,
 					payload: result.data
 				});
-				navigate('mainMenu', { token: result.data });
 			})
 			.catch(() => {
 				dispatch({

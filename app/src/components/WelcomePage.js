@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
-import { View, Text, Image } from 'react-native';
-import { Container, Item, Input, Icon, Button, Spinner } from 'native-base';
+import { Text, Image } from 'react-native';
+import { Container, Button } from 'native-base';
 
 class WelcomePage extends Component {
 	render() {
@@ -15,7 +15,7 @@ class WelcomePage extends Component {
         />
 				<Text style={styles.textStyle}>If you do not have account please</Text>
 					<Button 
-						full rounded dark 
+						full 
 						onPress={() => navigate('register')} 
 						style={styles.buttonStyle} 
 					>
@@ -24,7 +24,7 @@ class WelcomePage extends Component {
 						</Text>
 					</Button>
 				<Text style={styles.textStyle}>or </Text>
-					<Button full rounded dark onPress={() => navigate('login')} style={styles.buttonStyle}>
+					<Button full onPress={() => navigate('login')} style={styles.buttonStyle}>
 						<Text style={styles.buttonTextStyle}>Login</Text>
 					</Button>	
 			</Container>
@@ -56,8 +56,10 @@ const styles = {
 		marginBottom: 15
 	},
 	buttonStyle: {
-		marginLeft: 25,
-		marginRight: 25
+		borderRadius: 15,
+		backgroundColor: '#00aced',
+		marginLeft: 10,
+		marginRight: 10
 	},
 	buttonTextStyle: {
 		color: '#fff',

@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { Text } from 'react-native';
 import { connect } from 'react-redux';
 import { BarCodeScanner, Permissions } from 'expo';
-import { Container, Item, Input, Icon, Button, Spinner } from 'native-base';
+import { Container, Item, Input, Icon, Button, Spinner, Label } from 'native-base';
 import DateTimePicker from 'react-native-modal-datetime-picker';
 import { getAttendanceInfo, saveAttendanceRecord } from '../actions';
 import { MainContainer, FieldContainer, ItemContainer } from './common';
@@ -64,8 +64,10 @@ class NewAttendace extends Component {
 		const { courseName, hours, isSuccessful, result, loading } = this.props;
 		return (
 			<Container style={styles.contentStyle}>
-				<Item rounded style={styles.itemStyle}>
+				<Item inlineLabel style={styles.itemStyle}>
+				<Label>Course Name:</Label>
 						<Input 
+							style={styles.inputStyle}
 							placeholder="Course Name"
 							label="Course Name" 
 							onChangeText={(value) => this.onChangeTextHandler({ prop: 'courseName', value })}
@@ -73,7 +75,7 @@ class NewAttendace extends Component {
 						/>
 				</Item>
 				
-						<Button full rounded onPress={this.showDateTimePicker.bind(this)}>
+						<Button full light onPress={this.showDateTimePicker.bind(this)} style={styles.buttonStyle}>
 							<Text>Choose Date</Text>
 						</Button>
 						<DateTimePicker
@@ -85,7 +87,8 @@ class NewAttendace extends Component {
 							onCancel={this.hideDateTimePicker.bind(this)}
 						/>
 
-				<Item rounded style={styles.itemStyle}>
+				<Item inlineLabel style={styles.itemStyle}>
+				<Label>Hour(s):</Label>
 						<Input
 							placeholder="Hour(s)" 
 							label="Hour(s)"
@@ -104,19 +107,23 @@ class NewAttendace extends Component {
 							Duplicated student
 						</Text>
 					}
-				<Item rounded style={styles.itemStyle}>
-					<Button onPress={this.onPressButton.bind(this)}>
+				
+					<Button full light onPress={this.onPressButton.bind(this)} style={styles.buttonStyle}>
 						<Text>Open Scanning</Text>
 					</Button>
-				</Item>
-				<Item rounded style={styles.itemStyle}>
+			
+				
 				{loading ?
 					<Spinner /> :
-					<Button onPress={this.saveAttendanceRecord.bind(this)}>
-						<Text>Save Attendance Record</Text>
+					<Button 
+						full primary rounded
+						onPress={this.saveAttendanceRecord.bind(this)} 
+						style={styles.submitButton}
+					>
+						<Text style={{ color: '#fff' }}>Save Attendance Record</Text>
 					</Button>
 					}
-				</Item>
+			
 					{result && 
 						<Text style={styles.successfulTextStyle}>
 							Successfully saved
@@ -156,7 +163,9 @@ class NewAttendace extends Component {
 const styles = {
 	contentStyle: {
 		paddingTop: 20,
-		backgroundColor: '#c0deed'
+		backgroundColor: '#c0deed',
+		paddingLeft: 10,
+		paddingRight: 10
 	},
 	successfulTextStyle: {
 		color: 'green',
@@ -165,7 +174,18 @@ const styles = {
 	},
 	itemStyle: {
 		borderColor: 'white',
-		margin: 10
+		marginBottom: 10
+	},
+	inputStyle: {
+		borderColor: '#fff'
+	},
+	buttonStyle: {
+		marginBottom: 10
+	},
+	submitButton: {
+		marginTop: 20,
+		borderRadius: 15,
+		backgroundColor: '#00aced'
 	}
 };
 

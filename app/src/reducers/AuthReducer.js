@@ -9,7 +9,7 @@ import {
 } from '../actions/types';
 
 const INITIAL_STATE = { 
-	email: '', password: '', user: null, error: '', loading: null, singUpError: '' 
+	email: '', password: '', user: null, error: '', loading: null, signUpError: '', name: '', surname: '', signUpSuccess: '', result: null
 };
 
 export default (state = INITIAL_STATE, action) => {
@@ -25,10 +25,10 @@ export default (state = INITIAL_STATE, action) => {
 		case GET_USER:
 			return { ...state, teacher: action.payload };
 		case SIGNUP_SUCCESS:
-			return { ...state, user: action.payload, loading: false };
+			return { ...state, user: action.payload, loading: false, signUpSuccess: 'Successfuly created please login', result: true };
 		case SIGNUP_FAIL:
 			return { 
-				...state, singUpError: 'Registration failed', email: '', password: '', loading: false 
+				...state, signUpError: 'Registration failed', email: '', password: '', loading: false, name: '', surname: '' 
 			};
 		default:
 			return state;

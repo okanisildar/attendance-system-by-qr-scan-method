@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { View, Text } from 'react-native';
+import { Text } from 'react-native';
 import { connect } from 'react-redux';
 import { Container, Item, Input, Icon, Button, Spinner, Label } from 'native-base';
 import { onChangeTextHandler, login } from '../actions';
@@ -24,10 +24,11 @@ class LoginForm extends Component {
 		const { loading, error } = this.props; 
     return (
 			<Container style={styles.contentStyle}>
-				<Item inlineLabel rounded style={styles.itemStyle}>
-					<Icon active name='mail' />
-					<Label>Email</Label>
+				<Item inlineLabel style={styles.itemStyle}>
+					<Icon active name='mail' style={styles.iconStyle} />
+					<Label style={styles.labelStyle}>Email</Label>
 					<Input
+					style={styles.inputStyle}
 					autoCorrect={false}
 					placeholder="Email" 
 					icon={<Icon name="user" />}
@@ -35,10 +36,11 @@ class LoginForm extends Component {
 					label='Email'
 					/>
 				</Item>
-				<Item inlineLabel rounded style={styles.itemStyle}>
-					<Icon active name='lock' />
-					<Label>Email</Label>
+				<Item inlineLabel style={styles.itemStyle}>
+					<Icon active name='lock' style={styles.iconStyle} />
+					<Label style={styles.labelStyle}>Password</Label>
 					<Input 
+						style={styles.inputStyle}
 						placeholder="Password"
 						secureTextEntry
 						onChangeText={(value) => this.onChangeTextHandler({ prop: 'password', value })}
@@ -50,7 +52,7 @@ class LoginForm extends Component {
 					</Text>
 				{loading ? 
 					<Spinner /> :
-					<Button full rounded onPress={this.onButtonPress.bind(this)}>
+					<Button full onPress={this.onButtonPress.bind(this)} style={styles.buttonStyle}>
 						<Text style={{ color: '#fff' }}>Login</Text>
 					</Button>
 				}
@@ -67,14 +69,30 @@ const styles = {
     justifyContent: 'center',
 		backgroundColor: '#c0deed'
 	},
+	labelStyle: {
+		flex: 1
+	},
+	iconStyle: {
+		marginLeft: 10
+	},
+	inputStyle: {
+		flex: 2.5
+	},
 	errorTextStyle: {
 		fontSize: 20,
 		alignSelf: 'center',
 		color: 'red'
 	},
 	itemStyle: {
-		borderColor: 'white',
-		marginBottom: 10
+		borderColor: '#fff',
+		marginBottom: 10,
+		borderRadius: 15
+	},
+	buttonStyle: {
+		borderRadius: 15,
+		backgroundColor: '#00aced',
+		marginLeft: 10,
+		marginRight: 10
 	}
 };
 
