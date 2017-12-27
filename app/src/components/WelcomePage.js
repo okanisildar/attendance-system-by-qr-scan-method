@@ -37,8 +37,8 @@ const styles = {
 		backgroundColor: '#c0deed'
 	},
 	imageStyle: {
-		width: 100,
-		height: 100,
+		width: 150,
+		height: 150,
 		alignSelf: 'center',
 		marginTop: 15
 	},

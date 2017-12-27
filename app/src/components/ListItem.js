@@ -34,7 +34,7 @@ const styles = {
     flexDirection: 'row', 
     height: 30,
     borderBottomWidth: 1,
-    borderColor: '#fff' 
+    borderColor: '#fff'
   },
   titleStyle: {
     fontSize: 18,

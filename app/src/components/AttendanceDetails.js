@@ -36,37 +36,33 @@ class AttendanceDetails extends Component {
     console.log(studentNumber)
     if (students.includes(studentNumber)) {
       isAbsent = false;
-    }else {
+    } else {
       isAbsent = true;
     }
 		return (
 			<TouchableWithoutFeedback>
-        <View>
-          <ItemContainer>
-            <FieldContainer>
-              <Body>
-                <Text>
-                  {`${studentNumber}  ${name} ${surname}`}
-                </Text>
-              </Body>
-              <Right>
-                {!isAbsent ?
-                  <Icon name="ios-checkmark-circle" style={{ color: 'green' }} />
-                  :
-                  <Icon name="ios-close-circle" style={{ color: 'red' }} />
-                }
-              </Right>
-            </FieldContainer>
-          </ItemContainer>
-        </View>
+        <Container style={styles.lineStyle}>
+          <Body style={{ flexDirection: 'row' }}>
+            <Text style={styles.studentNumberStyle}>{studentNumber}</Text>
+            <Text style={styles.textStyle}>
+              {`${name} ${surname}`}
+            </Text>
+          </Body>
+          <Right style={styles.iconStyle}>
+            {!isAbsent ?
+              <Icon name="ios-checkmark-circle" style={{ color: 'green' }} />
+              :
+              <Icon name="ios-close-circle" style={{ color: 'red' }} />
+            }
+          </Right>
+        </Container>
       </TouchableWithoutFeedback>
     );
 	}
 
 	render() {
-   //console.log(this.props)
 		return (
-			<Container style={{ marginLeft: -10 }}>
+			<Container style={styles.containerStyle}>
         <ListView 
           enableEmptySections
           dataSource={this.dataSource}
@@ -77,18 +73,33 @@ class AttendanceDetails extends Component {
 	}
 }
 
+const styles = {
+  containerStyle: {
+    backgroundColor: '#c0deed'
+  },
+  lineStyle: {
+    flexDirection: 'row', 
+    height: 50,
+    borderBottomWidth: 1,
+    borderColor: '#fff' 
+  },
+  textStyle: {
+    fontSize: 18,
+    flex: 2
+  },
+  studentNumberStyle: {
+    flex: 1,
+    fontSize: 18,
+    alignItems: 'flex-end'
+  },
+  iconStyle: {
+    flex: 0.5
+  }
+};
+
 const mapStateToProps = state => {
   const { allStudents, getError } = state.student;
   return { allStudents, getError };
 };
 
 export default connect(mapStateToProps, { listStudentsByCourse })(AttendanceDetails);
-/*
-  <List 
-            dataArray={}
-            renderRow={(item) =>
-              <ListItem>
-                <Text>{item}</Text>
-              </ListItem>
-            } />
-*/
