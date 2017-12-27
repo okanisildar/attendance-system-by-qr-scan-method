@@ -2,8 +2,8 @@ import _ from 'lodash';
 import React, { Component } from 'react';
 import { Text } from 'react-native';
 import { connect } from 'react-redux';
+import { Container, Item, Input, Button, Label } from 'native-base';
 import { onChangeTextUpdateTeacher, updateTeacher } from '../actions';
-import { MainContainer, Input, FieldContainer, ItemContainer, Button } from './common';
 
 class UpdateTeacherInformation extends Component {
 	componentWillMount() {
@@ -25,45 +25,80 @@ class UpdateTeacherInformation extends Component {
 	render() {
 		const { name, surname, isSuccessful } = this.props;
 		return (
-			<MainContainer>
-				<ItemContainer>
-					<FieldContainer>
-						<Input 
-							placheholder="Name"
-							label="Name"
-							value={name}
-							onChangeText={(value) => this.onChangeTextHandler({ prop: 'name', value })}
-						/>
-					</FieldContainer>
-					<FieldContainer>
-						<Input 
-							placheholder="Surname"
-							label="Surname"
-							value={surname}
-							onChangeText={(value) => this.onChangeTextHandler({ prop: 'surname', value })}
-						/>
-					</FieldContainer>
-					<FieldContainer>
-						<Button onPress={this.onButtonPressed.bind(this, name, surname)}>Update</Button>
-					</FieldContainer>
+			<Container style={styles.contentStyle}>
+				<Item inlineLabel style={styles.itemStyle}>
+					<Label style={styles.labelStyle}>Name:</Label>
+					<Input 
+						autocorrect={false}
+						placheholder="Name"
+						label="Name"
+						value={name}
+						onChangeText={(value) => this.onChangeTextHandler({ prop: 'name', value })}
+						style={styles.inputStyle}
+					/>
+				</Item>
+				<Item inlineLabel style={styles.itemStyle}>
+					<Label>Surname:</Label>
+					<Input 
+						autocorrect={false}
+						placheholder="Surname"
+						label="Surname"
+						value={surname}
+						onChangeText={(value) => this.onChangeTextHandler({ prop: 'surname', value })}
+						style={styles.inputStyle}
+					/>
+				</Item>
+						<Button 
+							full primary rounded
+							onPress={this.onButtonPressed.bind(this, name, surname)}
+							style={styles.submitButton}
+						>
+							<Text style={styles.buttonTextStyle}>Update</Text>
+						</Button>
 					{isSuccessful && 
-						<FieldContainer>
 							<Text style={styles.successfulTextStyle}>
 								Successfully updated
 							</Text>
-						</FieldContainer>
 					}
-				</ItemContainer>
-			</MainContainer>
+			</Container>
 		);
 	}
 }
 
 const styles = {
+	contentStyle: {
+		flex: 1,
+		flexDirection: 'column',
+		paddingTop: 20,
+		backgroundColor: '#c0deed',
+		paddingLeft: 10,
+		paddingRight: 10
+	},
+	labelStyle: {
+		flex: 1
+	},
+	itemStyle: {
+		borderColor: 'white',
+		marginBottom: 10
+	},
+	inputStyle: {
+		borderColor: '#fff',
+		flex: 3
+	},
+	submitButton: {
+		marginTop: 20,
+		borderRadius: 15,
+		backgroundColor: '#00aced'
+	},
 	successfulTextStyle: {
 		color: 'green',
 		alignSelf: 'center',
-		fontSize: 20
+		fontSize: 20,
+		marginTop: 10
+	},
+	buttonTextStyle: {
+		color: '#fff',
+		fontSize: 18
 	}
 };
 

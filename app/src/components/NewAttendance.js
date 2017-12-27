@@ -76,7 +76,7 @@ class NewAttendace extends Component {
 				</Item>
 				
 						<Button full light onPress={this.showDateTimePicker.bind(this)} style={styles.buttonStyle}>
-							<Text>Choose Date</Text>
+							<Text style={{ color: '#000', fontSize: 18 }}>Choose Date</Text>
 						</Button>
 						<DateTimePicker
 							isVisible={this.state.isDateTimePickerVisible}
@@ -109,7 +109,7 @@ class NewAttendace extends Component {
 					}
 				
 					<Button full light onPress={this.onPressButton.bind(this)} style={styles.buttonStyle}>
-						<Text>Open Scanning</Text>
+						<Text style={{ color: '#000', fontSize: 18 }}>Open Scanning</Text>
 					</Button>
 			
 				
@@ -120,7 +120,7 @@ class NewAttendace extends Component {
 						onPress={this.saveAttendanceRecord.bind(this)} 
 						style={styles.submitButton}
 					>
-						<Text style={{ color: '#fff' }}>Save Attendance Record</Text>
+						<Text style={{ color: '#fff', fontSize: 18 }}>Save Attendance Record</Text>
 					</Button>
 					}
 			

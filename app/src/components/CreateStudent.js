@@ -1,8 +1,9 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { View, Text } from 'react-native';
+import { Text } from 'react-native';
+import { Container, Item, Input, Button, Label } from 'native-base';
 import { onChangeTextHandler, createStudent, getRecords } from '../actions';
-import { MainContainer, Input, FieldContainer, ItemContainer, Button, Spinner } from './common';
+import { Spinner } from './common';
 
 class CreateStudent extends Component {
 
@@ -18,43 +19,49 @@ class CreateStudent extends Component {
 	render() {
 		const { loading, error, isSuccessful } = this.props;
 		return (
-			<View style={{ flex: 1 }}>
-				<MainContainer>
-					<ItemContainer>
-					<FieldContainer>
+			<Container style={styles.contentStyle}>
+				<Item inlineLabel style={styles.itemStyle}>
+					<Label style={styles.labelStyle}>Number:</Label>
+						<Input
+							placeholder="Number" 
+							onChangeText={(value) => this.onChangeTextHandler({ prop: 'studentNumber', value })}
+							keyboardType="numeric" 
+						/>
+				</Item>
+				<Item inlineLabel style={styles.itemStyle}>
+					<Label style={styles.labelStyle}>Name:</Label>
 							<Input
-								placeholder="Number" 
-								onChangeText={(value) => this.onChangeTextHandler({ prop: 'studentNumber', value })}
-								label='Number'
-								keyboardType="numeric" 
-							/>
-						</FieldContainer>
-						<FieldContainer>
-							<Input
+								autocorrect={false}
 								placeholder="Name" 
 								onChangeText={(value) => this.onChangeTextHandler({ prop: 'name', value })}
-								label='Name'
 							/>
-						</FieldContainer>
-						<FieldContainer>
+				</Item>
+				<Item inlineLabel style={styles.itemStyle}>
+					<Label style={styles.labelStyle}>Surname:</Label>
 							<Input 
+								autocorrect={false}
 								placeholder="Surname"
 								onChangeText={(value) => this.onChangeTextHandler({ prop: 'surname', value })}
-								label='Surname' 
 							/>
-						</FieldContainer>
-						<FieldContainer>
+				</Item>
+				<Item inlineLabel style={styles.itemStyle}>
+					<Label style={styles.labelStyle}>Course(s):</Label>
 							<Input 
+								autocorrect={false}
 								placeholder="Course(s)"
 								onChangeText={(value) => this.onChangeTextHandler({ prop: 'courses', value })}
 								label='Course(s)' 
 							/>
-						</FieldContainer>
-						<FieldContainer>
+				</Item>
 						{loading ? <Spinner /> :
-							<Button onPress={this.onButtonPressed.bind(this)}>Create Student</Button>
+							<Button 
+								full primary rounded
+								onPress={this.onButtonPressed.bind(this)}
+								style={styles.submitButton}
+							>
+									<Text style={styles.buttonTextStyle}>Create Student</Text>
+							</Button>
 						}
-						</FieldContainer>
 						{isSuccessful &&
 							<Text style={styles.successfulTextStyle}>
 								Successfully saved, next student
@@ -63,14 +70,40 @@ class CreateStudent extends Component {
 						<Text style={styles.warningTextStyle}>
 							{error}
 						</Text>
-					</ItemContainer>
-				</MainContainer>
-			</View>
+		</Container>
     );
 	}
 }
 
 const styles = {
+	contentStyle: {
+		flex: 1,
+		flexDirection: 'column',
+		paddingTop: 20,
+		backgroundColor: '#c0deed',
+		paddingLeft: 10,
+		paddingRight: 10
+	},
+	labelStyle: {
+		flex: 1
+	},
+	itemStyle: {
+		borderColor: 'white',
+		marginBottom: 10
+	},
+	inputStyle: {
+		borderColor: '#fff',
+		flex: 5
+	},
+	submitButton: {
+		marginTop: 20,
+		borderRadius: 15,
+		backgroundColor: '#00aced'
+	},
+	buttonTextStyle: {
+		color: '#fff',
+		fontSize: 18
+	},
 	successfulTextStyle: {
 		color: 'green',
 		alignSelf: 'center',

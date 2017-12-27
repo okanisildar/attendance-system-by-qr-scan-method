@@ -87,7 +87,7 @@ class RegisterForm extends Component {
 					{loading ? 
 						<Spinner /> :
 						<Button full onPress={this.onButtonPress.bind(this)} style={styles.buttonStyle} >
-							<Text style={{ color: '#fff' }}>Sign Up</Text>
+							<Text style={styles.buttonTextStyle}>Sign Up</Text>
 						</Button>
 					}
 					
@@ -134,6 +134,10 @@ const styles = {
 		alignSelf: 'center',
 		fontSize: 20
 	},
+	buttonTextStyle: {
+		fontSize: 18,
+		color: '#fff'
+	}
 };
 
 const mapStateToProps = (state) => {

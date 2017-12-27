@@ -63,7 +63,7 @@ const styles = {
 	},
 	buttonTextStyle: {
 		color: '#fff',
-		fontSize: 20
+		fontSize: 18
 	},
 	linkStyle: {
 		fontSize: 14,

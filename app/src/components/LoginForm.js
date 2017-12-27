@@ -52,7 +52,7 @@ class LoginForm extends Component {
 				{loading ? 
 					<Spinner /> :
 					<Button full onPress={this.onButtonPress.bind(this)} style={styles.buttonStyle}>
-						<Text style={{ color: '#fff' }}>Login</Text>
+						<Text style={styles.buttonTextStyle}>Login</Text>
 					</Button>
 				}
 			</Container>
@@ -92,6 +92,10 @@ const styles = {
 		backgroundColor: '#00aced',
 		marginLeft: 10,
 		marginRight: 10
+	},
+	buttonTextStyle: {
+		fontSize: 18,
+		color: '#fff'
 	}
 };
 
