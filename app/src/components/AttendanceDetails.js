@@ -10,7 +10,7 @@ import { FieldContainer, ItemContainer } from './common';
 class AttendanceDetails extends Component {
   componentWillMount() {
     const { courseName } = this.props.navigation.state.params.record;
-    this.props.listStudentsByCourse({ courseName })
+    this.props.listStudentsByCourse({ courseName });
     this.createDataSource(this.props);
   }
 

@@ -3,7 +3,8 @@ import {
 	CREATE_STUDENT_SUCCESS, 
 	CREATE_STUDENT_FAIL,
 	GET_STUDENTS_SUCCESS,
-	GET_STUDENTS_FAIL
+	GET_STUDENTS_FAIL,
+	GET_STUDENTS
 } from '../actions/types';
 
 const INITIAL_STATE = {
@@ -27,6 +28,8 @@ export default (state = INITIAL_STATE, action) => {
 			return { ...state, allStudents: action.payload.students, loading: false };
 		case GET_STUDENTS_FAIL:
 			return { ...state, getError: 'Students could not found', loading: false };
+		case GET_STUDENTS:
+			return { ...state, students: action.payload.students, loading: false };
 		default:
 			return state;
 	}

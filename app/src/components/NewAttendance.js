@@ -4,7 +4,7 @@ import { connect } from 'react-redux';
 import { BarCodeScanner, Permissions } from 'expo';
 import { Container, Item, Input, Icon, Button, Spinner, Label } from 'native-base';
 import DateTimePicker from 'react-native-modal-datetime-picker';
-import { getAttendanceInfo, saveAttendanceRecord } from '../actions';
+import { getAttendanceInfo, saveAttendanceRecord, listStudentsByCourse, listStudents } from '../actions';
 import { MainContainer, FieldContainer, ItemContainer } from './common';
 
 
@@ -14,6 +14,10 @@ class NewAttendace extends Component {
     isDateTimePickerVisible: false,
     isRepeating: false
   }
+
+  componentDidMount() {
+		this.props.listStudents();
+	}
 
 	onChangeTextHandler(value) {
 		this.props.getAttendanceInfo(value);
@@ -26,12 +30,19 @@ class NewAttendace extends Component {
 
 	async handleBarCodeRead(value) {
 		const { data } = value.value;
-		this.checkIfStudentExists(data);
+		this.checkIfStudentExists();
+		this.checkIfStudentAlreadySaved(data);
 		const { status } = await Permissions.askAsync(Permissions.CAMERA);
 		this.setState({ hasCameraPermission: status === 'false' });
 	}
 
-	checkIfStudentExists(data) {
+	checkIfStudentExists() {
+		const { courseName } = this.props;
+		this.props.listStudentsByCourse({ courseName });
+		console.log(this.props.allStudents);
+	}
+
+	checkIfStudentAlreadySaved(data) {
 		const { students } = this.props;
 		if (students.includes(data)) {
 			this.setState({ isRepeating: true });
@@ -189,16 +200,17 @@ const styles = {
 	}
 };
 
-const mapStateToProps = ({ attendance }) => {
+const mapStateToProps = (state) => {
 	return {
-			courseName: attendance.courseName,
-			date: attendance.date,
-			hours: attendance.hours,
-			students: attendance.students,
-			isSuccessful: attendance.isSuccessful,
-			result: attendance.result,
-			loading: attendance.loading
+			courseName: state.attendance.courseName,
+			date: state.attendance.date,
+			hours: state.attendance.hours,
+			students: state.attendance.students,
+			isSuccessful: state.attendance.isSuccessful,
+			result: state.attendance.result,
+			loading: state.attendance.loading,
+			allStudents: state.student.allStudents
 	};
 };
 
-export default connect(mapStateToProps, { getAttendanceInfo, saveAttendanceRecord })(NewAttendace);
+export default connect(mapStateToProps, { getAttendanceInfo, saveAttendanceRecord, listStudentsByCourse, listStudents })(NewAttendace);

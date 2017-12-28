@@ -19,7 +19,7 @@ export default (state = INITIAL_STATE, action) => {
 		case SEND_REQUEST:
 			return { ...state, loading: true };
 		case SAVE_ATTENDANCE_INFO:
-			return { ...state, [action.payload.prop]: action.payload.value };
+			return { ...state, [action.payload.prop]: action.payload.value, loading: false };
 		case SAVE_ATTENDANCE_SUCCESS:
 			return { ...state, result: action.payload, loading: false };
 		case GET_RECORDS_SUCCESS:

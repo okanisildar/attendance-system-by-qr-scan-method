@@ -23,6 +23,7 @@ export const SAVE_ATTENDANCE_SUCCESS = 'save_attendance_success';
 export const SAVE_ATTENDANCE_FAIL = 'save_attendance_fail';
 export const GET_RECORDS_SUCCESS = 'get_records_success';
 export const GET_RECORDS_FAIL = 'get_records_fail';
+export const GET_STUDENTS = 'get_students';
 
 //student
 export const CREATE_STUDENT_SUCCESS = 'create_student_success';
