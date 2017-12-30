@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { View, Text } from 'react-native';
+import { Text } from 'react-native';
 import { connect } from 'react-redux';
 import { Container, Item, Input, Icon, Button, Spinner, Label } from 'native-base';
 import { onChangeTextHandler, signUp } from '../actions';
@@ -35,7 +35,6 @@ class RegisterForm extends Component {
 						style={styles.inputStyle}
 						placeholder="Email" 
 						onChangeText={(value) => this.onChangeTextHandler({ prop: 'email', value })}
-						value={email}
 					/>
 				</Item>
 				<Item inlineLabel style={styles.itemStyle}>
@@ -46,7 +45,6 @@ class RegisterForm extends Component {
 						style={styles.inputStyle}
 						placeholder="Name" 
 						onChangeText={(value) => this.onChangeTextHandler({ prop: 'name', value })}
-						value={name}
 					/>
 				</Item>
 				<Item inlineLabel style={styles.itemStyle}>
@@ -57,7 +55,6 @@ class RegisterForm extends Component {
 						style={styles.inputStyle}
 						placeholder="Surname" 
 						onChangeText={(value) => this.onChangeTextHandler({ prop: 'surname', value })}
-						value={surname}
 					/>
 				</Item>
 				<Item inlineLabel style={styles.itemStyle}>
@@ -68,7 +65,6 @@ class RegisterForm extends Component {
 						placeholder="Password"
 						secureTextEntry
 						onChangeText={(value) => this.onChangeTextHandler({ prop: 'password', value })}
-						value={password}
 					/>
 				</Item>
 					{!validation &&

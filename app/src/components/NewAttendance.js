@@ -16,7 +16,7 @@ class NewAttendace extends Component {
   }
 
   componentDidMount() {
-		this.props.listStudents();
+		//this.props.listStudents();
 	}
 
 	onChangeTextHandler(value) {
@@ -213,4 +213,5 @@ const mapStateToProps = (state) => {
 	};
 };
 
-export default connect(mapStateToProps, { getAttendanceInfo, saveAttendanceRecord, listStudentsByCourse, listStudents })(NewAttendace);
+export default connect(mapStateToProps, 
+	{ getAttendanceInfo, saveAttendanceRecord, listStudentsByCourse, listStudents })(NewAttendace);
