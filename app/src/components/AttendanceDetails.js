@@ -33,7 +33,6 @@ class AttendanceDetails extends Component {
     const { students } = this.props.navigation.state.params.record;
     const { studentNumber, name, surname } = student;
     let isAbsent;
-    console.log(studentNumber)
     if (students.includes(studentNumber)) {
       isAbsent = false;
     } else {

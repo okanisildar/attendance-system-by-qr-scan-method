@@ -21,7 +21,7 @@ export default (state = INITIAL_STATE, action) => {
 		case ON_CHANGE_TEXT:
 			return { ...state, [action.payload.prop]: action.payload.value };
 		case CREATE_STUDENT_SUCCESS:
-			return { ...state, loading: false, isSuccessful: true };
+			return { ...state, loading: false, isSuccessful: true, studentNumber: '', name: '', surname: '', courses: '' };
 		case CREATE_STUDENT_FAIL:
 			return { ...state, error: 'Student could not created', loading: false };
 		case GET_STUDENTS_SUCCESS:

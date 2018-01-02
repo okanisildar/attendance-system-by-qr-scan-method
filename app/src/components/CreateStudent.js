@@ -17,7 +17,7 @@ class CreateStudent extends Component {
 	}
 
 	render() {
-		const { loading, error, isSuccessful } = this.props;
+		const { studentNumber, name, surname, courses, loading, error, isSuccessful } = this.props;
 		return (
 			<Container style={styles.contentStyle}>
 				<Item inlineLabel style={styles.itemStyle}>
@@ -26,6 +26,7 @@ class CreateStudent extends Component {
 							placeholder="Number" 
 							onChangeText={(value) => this.onChangeTextHandler({ prop: 'studentNumber', value })}
 							keyboardType="numeric" 
+							value={studentNumber}
 						/>
 				</Item>
 				<Item inlineLabel style={styles.itemStyle}>
@@ -34,6 +35,7 @@ class CreateStudent extends Component {
 								autocorrect={false}
 								placeholder="Name" 
 								onChangeText={(value) => this.onChangeTextHandler({ prop: 'name', value })}
+								value={name}
 							/>
 				</Item>
 				<Item inlineLabel style={styles.itemStyle}>
@@ -42,6 +44,7 @@ class CreateStudent extends Component {
 								autocorrect={false}
 								placeholder="Surname"
 								onChangeText={(value) => this.onChangeTextHandler({ prop: 'surname', value })}
+								value={surname}
 							/>
 				</Item>
 				<Item inlineLabel style={styles.itemStyle}>
@@ -51,6 +54,7 @@ class CreateStudent extends Component {
 								placeholder="Course(s)"
 								onChangeText={(value) => this.onChangeTextHandler({ prop: 'courses', value })}
 								label='Course(s)' 
+								value={courses}
 							/>
 				</Item>
 						{loading ? <Spinner /> :
@@ -64,7 +68,7 @@ class CreateStudent extends Component {
 						}
 						{isSuccessful &&
 							<Text style={styles.successfulTextStyle}>
-								Successfully saved, next student
+								Successfully saved
 							</Text>
 						}
 						<Text style={styles.warningTextStyle}>

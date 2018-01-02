@@ -3,6 +3,7 @@ import { Text } from 'react-native';
 import { connect } from 'react-redux';
 import { BarCodeScanner, Permissions } from 'expo';
 import { Container, Item, Input, Icon, Button, Spinner, Label } from 'native-base';
+import moment from 'moment';
 import DateTimePicker from 'react-native-modal-datetime-picker';
 import { getAttendanceInfo, saveAttendanceRecord, listStudentsByCourse, listStudents } from '../actions';
 import { MainContainer, FieldContainer, ItemContainer } from './common';
@@ -72,7 +73,7 @@ class NewAttendace extends Component {
 
 	renderForm() {
 		const { isRepeating } = this.state;
-		const { courseName, hours, isSuccessful, result, loading } = this.props;
+		const { courseName, hours, isSuccessful, result, loading, date } = this.props;		
 		return (
 			<Container style={styles.contentStyle}>
 				<Item inlineLabel style={styles.itemStyle}>
@@ -85,19 +86,27 @@ class NewAttendace extends Component {
 							value={courseName}
 						/>
 				</Item>
-				
-						<Button full light onPress={this.showDateTimePicker.bind(this)} style={styles.buttonStyle}>
-							<Text style={{ color: '#000', fontSize: 18 }}>Choose Date</Text>
-						</Button>
-						<DateTimePicker
-							isVisible={this.state.isDateTimePickerVisible}
-							onConfirm={(value) => { 
-								this.onChangeTextHandler({ prop: 'date', value }); 
-								this.setState({ isDateTimePickerVisible: false });
-							}}
-							onCancel={this.hideDateTimePicker.bind(this)}
-						/>
-
+					<Button 
+						full 
+						light 
+						onPress={this.showDateTimePicker.bind(this)} 
+						style={styles.buttonStyle}
+					>
+						{date === '' ?
+							<Text style={{ color: '#000', fontSize: 18 }}>Choose Date</Text> :
+							<Text style={{ color: 'green', fontSize: 18 }}>
+								{moment(date).format('DD/MM/YYYY')}
+							</Text>
+						}
+					</Button>
+					<DateTimePicker
+						isVisible={this.state.isDateTimePickerVisible}
+						onConfirm={(value) => { 
+							this.onChangeTextHandler({ prop: 'date', value }); 
+							this.setState({ isDateTimePickerVisible: false });
+						}}
+						onCancel={this.hideDateTimePicker.bind(this)}
+					/>
 				<Item inlineLabel style={styles.itemStyle}>
 				<Label>Hour(s):</Label>
 						<Input
