@@ -1,12 +1,12 @@
 import React, { Component } from 'react';
-import { Text } from 'react-native';
+import { Text, View } from 'react-native';
 import { connect } from 'react-redux';
 import { BarCodeScanner, Permissions } from 'expo';
-import { Container, Item, Input, Icon, Button, Spinner, Label } from 'native-base';
+import { Container, Item, Input, Button, Spinner, Label } from 'native-base';
 import moment from 'moment';
 import DateTimePicker from 'react-native-modal-datetime-picker';
 import { getAttendanceInfo, saveAttendanceRecord, listStudentsByCourse, listStudents } from '../actions';
-import { MainContainer, FieldContainer, ItemContainer } from './common';
+import { MainContainer } from './common';
 
 
 class NewAttendace extends Component {
@@ -15,10 +15,6 @@ class NewAttendace extends Component {
     isDateTimePickerVisible: false,
     isRepeating: false
   }
-
-  componentDidMount() {
-		//this.props.listStudents();
-	}
 
 	onChangeTextHandler(value) {
 		this.props.getAttendanceInfo(value);
@@ -155,12 +151,15 @@ class NewAttendace extends Component {
 
 	renderCamera() {
 		return (
-			<MainContainer>
+			<Container>
         <BarCodeScanner
           onBarCodeRead={(value) => this.handleBarCodeRead({ value })}
-          style={{ height: 250, width: 250, alignSelf: 'center' }}
+          style={{ flex: 1 }}
         />
-      </MainContainer>
+        <View style={styles.qrHeader}>
+          <Text style={styles.qrHeaderText}>Scan QR Code</Text>
+        </View>
+      </Container>
      
     );
 	}
@@ -206,7 +205,19 @@ const styles = {
 		marginTop: 20,
 		borderRadius: 15,
 		backgroundColor: '#00aced'
-	}
+	},
+	qrHeader: {
+    position: 'absolute',
+    top: 40,
+    left: 0,
+    right: 0,
+    alignItems: 'center'
+  },
+  qrHeaderText: {
+    color: '#fff',
+    backgroundColor: 'transparent',
+    fontSize: 20
+  }
 };
 
 const mapStateToProps = (state) => {

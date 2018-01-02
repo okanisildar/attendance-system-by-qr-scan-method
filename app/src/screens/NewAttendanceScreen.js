@@ -1,8 +1,11 @@
 import React, { Component } from 'react';
 import NewAttendance from '../components/NewAttendance';
-import CreateStudent from '../components/CreateStudent';
 
 class NewAttendanceScreen extends Component {
+	static navigationOptions = {
+		title: 'Create Attendance'
+	};
+
 	render() {
 		return (
 			<NewAttendance navigation={this.props.navigation}/>
@@ -12,4 +15,4 @@ class NewAttendanceScreen extends Component {
 }
 
 export default NewAttendanceScreen;
-{/*<CreateStudent />*/}
+
