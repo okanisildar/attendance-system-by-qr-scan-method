@@ -21,10 +21,9 @@ mongo.init();
 app.use(session({ secret: 'secretkey' }));
 app.use(passport.initialize());
 app.use(passport.session()); 
-
 //routes
 app.get('/', (req, res) => res.send("Hello"));
-app.use('/users' , users);
+
 app.use('/teachers' , teachers);
 app.use('/students', students);
 app.use('/attendance', attendance);
