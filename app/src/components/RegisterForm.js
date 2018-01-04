@@ -8,9 +8,11 @@ class RegisterForm extends Component {
 	state = {
 		validation: true
 	}
+
 	onChangeTextHandler(value) {
 		this.props.onChangeTextHandler(value);
 	}
+
 
 	onButtonPress() {
 		const { email, password, name, surname } = this.props;
@@ -24,7 +26,7 @@ class RegisterForm extends Component {
 
   render() {
   	const { validation } = this.state;
-  	const { email, name, surname, password, loading, signUpError, signUpSuccess, result } = this.props;
+  	const { loading, signUpError, signUpSuccess, result } = this.props;
     return (
 			<Container style={styles.contentStyle}>
 				<Item inlineLabel style={styles.itemStyle}>
@@ -137,7 +139,9 @@ const styles = {
 };
 
 const mapStateToProps = (state) => {
-	const { email, password, name, surname, signUpError, signUpSuccess, loading, result } = state.auth;
+	const 
+		{ email, password, name, surname, signUpError, signUpSuccess, loading, result } 
+	= state.auth;
 
 	return { email, password, name, surname, signUpError, signUpSuccess, loading, result };
 };

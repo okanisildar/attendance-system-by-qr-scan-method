@@ -34,7 +34,7 @@ class CreateStudent extends Component {
 							<Input
 								autocorrect={false}
 								placeholder="Name" 
-								onChangeText={(value) => this.onChangeTextHandler({ prop: 'name', value })}
+								onChangeText={(value) => this.onChangeTextHandler({ prop: 'studentName', value })}
 								value={name}
 							/>
 				</Item>
@@ -43,7 +43,7 @@ class CreateStudent extends Component {
 							<Input 
 								autocorrect={false}
 								placeholder="Surname"
-								onChangeText={(value) => this.onChangeTextHandler({ prop: 'surname', value })}
+								onChangeText={(value) => this.onChangeTextHandler({ prop: 'studentSurname', value })}
 								value={surname}
 							/>
 				</Item>
@@ -121,9 +121,9 @@ const styles = {
 };
 
 const mapStateToProps = state => {
-	const { studentNumber, name, surname, courses, error, loading, isSuccessful } = state.student;
+	const { studentNumber, studentName, studentSurname, courses, error, loading, isSuccessful } = state.student;
 	const { records } = state.attendance;
-	return { studentNumber, name, surname, error, loading, records, courses, isSuccessful }; 
+	return { studentNumber, name, studentSurname, error, loading, records, courses, isSuccessful }; 
 };
 
 

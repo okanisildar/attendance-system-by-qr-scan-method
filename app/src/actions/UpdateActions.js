@@ -12,7 +12,7 @@ export const onChangeTextUpdateTeacher = ({ prop, value }) => {
 
 export const updateTeacher = ({ _id, name, surname }) => {
 	return dispatch => {
-		return axios.put(`${URL}/users/update-teacher`, { _id, name, surname })
+		return axios.put(`${URL}/teachers/update-teacher`, { _id, name, surname })
 			.then(result => {
 				dispatch({
 					type: UPDATE_SUCCESS,

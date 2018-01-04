@@ -64,8 +64,7 @@ const styles = {
 	contentStyle: {
 		flex: 1,
     flexDirection: 'column',
-    alignItems: 'center',
-    justifyContent: 'center',
+    paddingTop: 70,
 		backgroundColor: '#c0deed'
 	},
 	labelStyle: {

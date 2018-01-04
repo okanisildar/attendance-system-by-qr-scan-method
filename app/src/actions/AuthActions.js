@@ -20,7 +20,7 @@ export const onChangeTextHandler = ({ prop, value }) => {
 export const signUp = ({ email, password, name, surname }) => {
 	return dispatch => {
 		dispatch({ type: LOGIN_USER });
-		return axios.post(`${URL}/users`, { email, password, name, surname })
+		return axios.post(`${URL}/teachers`, { email, password, name, surname })
 			.then(result => {
 				dispatch({
 					type: SIGNUP_SUCCESS,
@@ -39,13 +39,13 @@ export const login = ({ email, password, navigate }) => {
 	return dispatch => {
 		dispatch({ type: LOGIN_USER });
 
-		return axios.post(`${URL}/users/login`, { email, password })
+		return axios.post(`${URL}/teachers/login`, { email, password })
 			.then(result => {
 				dispatch({
 					type: LOGIN_USER_SUCCESS,
 					payload: result.data
 				});
-				navigate('mainMenu', { user: result.data.user });
+				navigate('mainMenu', { user: result.data.teacher });
 			})
 			.catch(() => {
 				dispatch({
@@ -57,11 +57,11 @@ export const login = ({ email, password, navigate }) => {
 
 export const getUser = ({ _id }) => {
 	return dispatch => {
-		return axios.post(`${URL}/users/get-user`, { _id })
+		return axios.post(`${URL}/teachers/get-user`, { _id })
 			.then(result => {
 				dispatch({
 					type: GET_USER,
-					payload: result.data.user
+					payload: result.data.teacher
 				});
 			});
 	};

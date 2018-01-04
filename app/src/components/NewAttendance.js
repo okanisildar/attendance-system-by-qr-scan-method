@@ -5,8 +5,9 @@ import { BarCodeScanner, Permissions } from 'expo';
 import { Container, Item, Input, Button, Spinner, Label } from 'native-base';
 import moment from 'moment';
 import DateTimePicker from 'react-native-modal-datetime-picker';
-import { getAttendanceInfo, saveAttendanceRecord, listStudentsByCourse, listStudents } from '../actions';
-import { MainContainer } from './common';
+import 
+	{ getAttendanceInfo, saveAttendanceRecord, listStudentsByCourse } 
+from '../actions';
 
 
 class NewAttendace extends Component {
@@ -36,7 +37,7 @@ class NewAttendace extends Component {
 	checkIfStudentExists() {
 		const { courseName } = this.props;
 		this.props.listStudentsByCourse({ courseName });
-		console.log(this.props.allStudents);
+			console.log(this.props.allStudents);
 	}
 
 	checkIfStudentAlreadySaved(data) {
@@ -73,7 +74,7 @@ class NewAttendace extends Component {
 		return (
 			<Container style={styles.contentStyle}>
 				<Item inlineLabel style={styles.itemStyle}>
-				<Label>Course Name:</Label>
+				<Label>Course Code:</Label>
 						<Input 
 							style={styles.inputStyle}
 							placeholder="Course Name"
@@ -234,4 +235,4 @@ const mapStateToProps = (state) => {
 };
 
 export default connect(mapStateToProps, 
-	{ getAttendanceInfo, saveAttendanceRecord, listStudentsByCourse, listStudents })(NewAttendace);
+	{ getAttendanceInfo, saveAttendanceRecord, listStudentsByCourse })(NewAttendace);

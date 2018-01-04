@@ -8,7 +8,7 @@ class NewAttendanceScreen extends Component {
 
 	render() {
 		return (
-			<NewAttendance navigation={this.props.navigation}/>
+			<NewAttendance navigation={this.props.navigation} />
 			
 		);
 	}
