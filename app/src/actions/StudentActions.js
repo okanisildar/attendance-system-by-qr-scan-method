@@ -9,10 +9,10 @@ import {
 	GET_STUDENTS
  } from './types';
 
-export const createStudent = ({ studentNumber, name, surname, courses }) => {
+export const createStudent = ({ studentNumber, studentName, studentSurname, courses }) => {
 	return dispatch => {
 		dispatch({ type: SEND_REQUEST });
-		return axios.post(`${URL}/students`, { studentNumber, name, surname, courses })
+		return axios.post(`${URL}/students`, { studentNumber, studentName, studentSurname, courses })
 			.then(result => {
 				dispatch({
 					type: CREATE_STUDENT_SUCCESS,

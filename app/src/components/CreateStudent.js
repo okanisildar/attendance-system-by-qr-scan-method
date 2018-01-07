@@ -12,8 +12,8 @@ class CreateStudent extends Component {
 	}
 
 	onButtonPressed() {
-		const { studentNumber, name, surname, courses } = this.props;
-		this.props.createStudent({ studentNumber, name, surname, courses });
+		const { studentNumber, studentName, studentSurname, courses } = this.props;
+		this.props.createStudent({ studentNumber, studentName, studentSurname, courses });
 	}
 
 	render() {
@@ -123,7 +123,7 @@ const styles = {
 const mapStateToProps = state => {
 	const { studentNumber, studentName, studentSurname, courses, error, loading, isSuccessful } = state.student;
 	const { records } = state.attendance;
-	return { studentNumber, name, studentSurname, error, loading, records, courses, isSuccessful }; 
+	return { studentNumber, studentName, studentSurname, error, loading, records, courses, isSuccessful }; 
 };
 
 

@@ -3,8 +3,8 @@ const Student= require('../models/student');
 function create(req, res, next) {
 	const body = req.body;
 	const studentNumber = body.studentNumber;
-	const name = body.name;
-	const surname = body.surname;
+	const name = body.studentName;
+	const surname = body.studentSurname;
 	const courses = body.courses;
 
 

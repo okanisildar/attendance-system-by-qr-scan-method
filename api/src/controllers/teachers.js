@@ -1,45 +1,12 @@
 'use strict'
-const validator = require('validator');
-
 const Teacher = require('../models/teachers');
 const jwt = require('jsonwebtoken');
 const isEmpty = require('lodash/isEmpty');
 
 const generateToken = teacher => jwt.sign(teacher, 'secretkey' , { expiresIn: '1y' })
 
-/*function validateInput(data) {
-  let errors = {};
-
-  if(validator.isNull(data.email)) {
-    errors.email = 'This field is required'
-  }
-
-  if(validator.isNull(data.password)) {
-    errors.password = 'This field is required'
-  }
-
-  if(validator.isNull(data.name)) {
-    errors.name = 'This field is required'
-  }
-
-  if(validator.isNull(data.surname)) {
-    errors.surname = 'This field is required'
-  }
-
-  return {
-    errors,
-    isValid: isEmpty(errors)
-  }
-}*/
-
 function registerUser (req, res, next) {
-  /*const errors = validateInput(req.body.errors);
-  const isValid = validateInput(req.body.isValid);
-
-  if(!isValid) {
-    res.status(400).json(errors);
-  }*/
-
+  
   const body = req.body;
   const email = body.email;
   const name = body.name;
@@ -125,9 +92,6 @@ function logInUser (req, res, next) {
         })
       }
 
-      /*const token = generateToken({
-        id: user.id,
-      })*/
       return res.json({
         teacher
       })
