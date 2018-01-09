@@ -36,7 +36,6 @@ class ViewAttendance extends Component {
 
 	render() {
 		const { navigation } = this.props;
-		console.log(this.props.records)
 		return (
 			<Container style={styles.containerStyle}>
 					<ListView

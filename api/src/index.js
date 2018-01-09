@@ -7,7 +7,6 @@ const app = express();
 
 const teachers = require('./routes/teachers');
 const students = require('./routes/students');
-const users = require('./routes/users');
 const attendance = require('./routes/attendance');
 const mongo = require('./config/mongo');
 
