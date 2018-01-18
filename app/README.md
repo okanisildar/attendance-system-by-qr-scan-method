@@ -23,3 +23,5 @@ Like `npm start`, but also attempts to open your app in the iOS Simulator if you
 
 #### `npm run android`
 
+When you run the api backend you need to update the URL variable on this location https://github.com/emirokanisildar/attendance-by-qr-scan-method/blob/master/app/src/actions/types.js
+
