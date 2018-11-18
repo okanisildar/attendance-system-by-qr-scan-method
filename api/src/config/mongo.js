@@ -1,5 +1,5 @@
 const mongoose = require('mongoose');
-const mongoURI = 'mongodb://admin:password@ds131997.mlab.com:31997/attendance_system'
+const mongoURI = 'mongodb://mymongodb/attendance_system'
 
 //mongodb://localhost:27017/attendance
 
