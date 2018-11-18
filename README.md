@@ -1,6 +1,6 @@
 # attendance-by-qr-scan-method
 This is a student attedance system by qr scan method project. 
-This project was made for one of the graduation projects of the my bachelor degree.
+This project was made for the one of my bachelor course and with the goal of learning React Native, Nodejs.
 
 System allows teachers to take attendance via scanning students' cards which are included with unique qr codes for each student
 using his/her mobile application. 
